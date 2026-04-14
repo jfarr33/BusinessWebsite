@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <linearGradient id="bridgeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a365d"/>
+      <stop offset="100%" stop-color="#c8a951"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="12" fill="#f0f4f8"/>
+  <!-- Bridge metaphor: tech side to business side -->
+  <!-- Left pillar: Technology -->
+  <rect x="50" y="100" width="70" height="110" rx="4" fill="#1a365d"/>
+  <text x="85" y="90" font-family="sans-serif" font-size="10" fill="#1a365d" text-anchor="middle" font-weight="bold">TECHNOLOGY</text>
+  <!-- Code brackets on pillar -->
+  <text x="70" y="135" font-family="Consolas, monospace" font-size="14" fill="#e8eef5">&lt;/&gt;</text>
+  <!-- Database icon on pillar -->
+  <ellipse cx="85" cy="160" rx="15" ry="5" fill="#c8a951" opacity="0.6"/>
+  <rect x="70" y="160" width="30" height="15" fill="#c8a951" opacity="0.4"/>
+  <ellipse cx="85" cy="175" rx="15" ry="5" fill="#c8a951" opacity="0.6"/>
+  <!-- Gear on pillar -->
+  <circle cx="85" cy="195" r="8" fill="none" stroke="#e8eef5" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <circle cx="85" cy="195" r="3" fill="#e8eef5" opacity="0.5"/>
+
+  <!-- Right pillar: Business -->
+  <rect x="280" y="100" width="70" height="110" rx="4" fill="#c8a951"/>
+  <text x="315" y="90" font-family="sans-serif" font-size="10" fill="#1a365d" text-anchor="middle" font-weight="bold">BUSINESS</text>
+  <!-- Chart icon on pillar -->
+  <rect x="295" y="140" width="8" height="20" rx="1" fill="#1a365d" opacity="0.5"/>
+  <rect x="307" y="130" width="8" height="30" rx="1" fill="#1a365d" opacity="0.6"/>
+  <rect x="319" y="120" width="8" height="40" rx="1" fill="#1a365d" opacity="0.7"/>
+  <!-- Dollar sign on pillar -->
+  <text x="315" y="188" font-family="Georgia, serif" font-size="18" fill="#1a365d" text-anchor="middle" opacity="0.6">$</text>
+  <!-- Target on pillar -->
+  <circle cx="315" cy="200" r="0" fill="none"/>
+
+  <!-- Bridge -->
+  <rect x="120" y="130" width="160" height="12" rx="3" fill="#1a365d"/>
+  <rect x="120" y="130" width="160" height="12" rx="3" fill="url(#bridgeGrad)"/>
+  <!-- Bridge supports -->
+  <rect x="155" y="142" width="6" height="40" rx="1" fill="#1a365d" opacity="0.3"/>
+  <rect x="197" y="142" width="6" height="50" rx="1" fill="#1a365d" opacity="0.3"/>
+  <rect x="239" y="142" width="6" height="40" rx="1" fill="#1a365d" opacity="0.3"/>
+  <!-- Bridge arch -->
+  <path d="M130 142 Q200 180 270 142" stroke="#1a365d" stroke-width="2" fill="none" opacity="0.2"/>
+
+  <!-- Arrow across bridge -->
+  <line x1="140" y1="126" x2="250" y2="126" stroke="#c8a951" stroke-width="2"/>
+  <polygon points="248,122 258,126 248,130" fill="#c8a951"/>
+
+  <!-- BTA diamond/badge in center -->
+  <rect x="175" y="105" width="50" height="30" rx="4" fill="white" stroke="#1a365d" stroke-width="1.5"/>
+  <text x="200" y="124" font-family="Georgia, serif" font-size="13" fill="#1a365d" text-anchor="middle" font-weight="bold">BTA</text>
+
+  <!-- Southeast map outline (simplified) -->
+  <path d="M140 225 L160 218 L185 220 L200 215 L220 218 L240 222 L260 220 L270 230 L258 245 L240 250 L225 255 L210 252 L195 258 L180 255 L165 248 L150 240 Z" fill="#1a365d" fill-opacity="0.08" stroke="#1a365d" stroke-width="1" stroke-opacity="0.15"/>
+  <!-- Location dots -->
+  <circle cx="185" cy="238" r="3" fill="#c8a951"/>
+  <circle cx="210" cy="240" r="3" fill="#c8a951"/>
+  <circle cx="230" cy="235" r="3" fill="#c8a951"/>
+  <circle cx="250" cy="238" r="3" fill="#c8a951"/>
+  <circle cx="195" cy="248" r="3" fill="#c8a951"/>
+
+  <!-- Label -->
+  <text x="200" y="280" font-family="Georgia, serif" font-size="14" fill="#1a365d" text-anchor="middle" font-weight="bold">Bridging Technology &amp; Business</text>
+</svg>

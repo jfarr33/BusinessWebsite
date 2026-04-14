@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" rx="12" fill="#f0f4f8"/>
+  <!-- Database cylinders -->
+  <ellipse cx="140" cy="80" rx="45" ry="15" fill="#1a365d"/>
+  <rect x="95" y="80" width="90" height="60" fill="#1a365d"/>
+  <ellipse cx="140" cy="140" rx="45" ry="15" fill="#1a365d"/>
+  <ellipse cx="140" cy="80" rx="45" ry="15" fill="#243f6b"/>
+  <ellipse cx="140" cy="100" rx="45" ry="15" fill="none" stroke="#e8eef5" stroke-width="0.5" opacity="0.4"/>
+  <ellipse cx="140" cy="120" rx="45" ry="15" fill="none" stroke="#e8eef5" stroke-width="0.5" opacity="0.4"/>
+  <!-- Second database -->
+  <ellipse cx="280" cy="80" rx="40" ry="13" fill="#c8a951"/>
+  <rect x="240" y="80" width="80" height="50" fill="#c8a951"/>
+  <ellipse cx="280" cy="130" rx="40" ry="13" fill="#c8a951"/>
+  <ellipse cx="280" cy="80" rx="40" ry="13" fill="#d4b662"/>
+  <ellipse cx="280" cy="97" rx="40" ry="13" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.4"/>
+  <ellipse cx="280" cy="114" rx="40" ry="13" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.4"/>
+  <!-- Connection arrows -->
+  <path d="M185 100 C210 100 210 100 240 100" stroke="#1a365d" stroke-width="2" fill="none" stroke-dasharray="5 3"/>
+  <polygon points="238,96 246,100 238,104" fill="#1a365d"/>
+  <!-- Table schema -->
+  <rect x="100" y="170" width="90" height="80" rx="4" fill="white" stroke="#1a365d" stroke-width="1.5"/>
+  <rect x="100" y="170" width="90" height="18" rx="4" fill="#1a365d"/>
+  <text x="145" y="183" font-family="Consolas, monospace" font-size="9" fill="white" text-anchor="middle">users</text>
+  <text x="108" y="200" font-family="Consolas, monospace" font-size="8" fill="#1a365d">id  INT PK</text>
+  <text x="108" y="212" font-family="Consolas, monospace" font-size="8" fill="#1a365d">name VARCHAR</text>
+  <text x="108" y="224" font-family="Consolas, monospace" font-size="8" fill="#1a365d">dept_id  FK</text>
+  <text x="108" y="236" font-family="Consolas, monospace" font-size="8" fill="#6b7b8d">created_at</text>
+  <!-- Second table -->
+  <rect x="220" y="170" width="90" height="80" rx="4" fill="white" stroke="#c8a951" stroke-width="1.5"/>
+  <rect x="220" y="170" width="90" height="18" rx="4" fill="#c8a951"/>
+  <text x="265" y="183" font-family="Consolas, monospace" font-size="9" fill="white" text-anchor="middle">departments</text>
+  <text x="228" y="200" font-family="Consolas, monospace" font-size="8" fill="#1a365d">id  INT PK</text>
+  <text x="228" y="212" font-family="Consolas, monospace" font-size="8" fill="#1a365d">name VARCHAR</text>
+  <text x="228" y="224" font-family="Consolas, monospace" font-size="8" fill="#1a365d">manager_id</text>
+  <text x="228" y="236" font-family="Consolas, monospace" font-size="8" fill="#6b7b8d">budget DEC</text>
+  <!-- FK relationship line -->
+  <line x1="190" y1="222" x2="220" y2="198" stroke="#1a365d" stroke-width="1.5"/>
+  <circle cx="220" cy="198" r="3" fill="#1a365d"/>
+  <!-- Label -->
+  <text x="200" y="275" font-family="Georgia, serif" font-size="16" fill="#1a365d" text-anchor="middle" font-weight="bold">Database Development</text>
+  <text x="200" y="293" font-family="sans-serif" font-size="11" fill="#6b7b8d" text-anchor="middle">Schema Design &amp; Migration</text>
+</svg>

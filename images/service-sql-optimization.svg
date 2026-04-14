@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" rx="12" fill="#f0f4f8"/>
+  <!-- Terminal window -->
+  <rect x="70" y="40" width="260" height="175" rx="8" fill="#1a365d"/>
+  <circle cx="90" cy="55" r="5" fill="#e74c3c" opacity="0.8"/>
+  <circle cx="106" cy="55" r="5" fill="#c8a951" opacity="0.8"/>
+  <circle cx="122" cy="55" r="5" fill="#27ae60" opacity="0.8"/>
+  <!-- SQL code lines -->
+  <text x="85" y="82" font-family="Consolas, monospace" font-size="11" fill="#c8a951">SELECT</text>
+  <text x="133" y="82" font-family="Consolas, monospace" font-size="11" fill="#e8eef5"> a.name, b.total</text>
+  <text x="85" y="98" font-family="Consolas, monospace" font-size="11" fill="#c8a951">FROM</text>
+  <text x="119" y="98" font-family="Consolas, monospace" font-size="11" fill="#e8eef5"> orders a</text>
+  <text x="85" y="114" font-family="Consolas, monospace" font-size="11" fill="#c8a951">JOIN</text>
+  <text x="119" y="114" font-family="Consolas, monospace" font-size="11" fill="#e8eef5"> customers b</text>
+  <text x="85" y="130" font-family="Consolas, monospace" font-size="11" fill="#c8a951">  ON</text>
+  <text x="109" y="130" font-family="Consolas, monospace" font-size="11" fill="#e8eef5"> a.cust_id = b.id</text>
+  <text x="85" y="146" font-family="Consolas, monospace" font-size="11" fill="#c8a951">WHERE</text>
+  <text x="127" y="146" font-family="Consolas, monospace" font-size="11" fill="#e8eef5"> b.region = 'SE'</text>
+  <!-- Execution time -->
+  <rect x="85" y="160" width="230" height="1" fill="#e8eef5" opacity="0.3"/>
+  <text x="85" y="178" font-family="Consolas, monospace" font-size="10" fill="#27ae60">✓ 0.003s (was 12.4s)</text>
+  <!-- Speed arrow -->
+  <path d="M345 100 L370 100 L360 85 L390 110 L360 135 L370 120 L345 120 Z" fill="#c8a951" opacity="0.8"/>
+  <!-- Speedometer -->
+  <path d="M340 185 A40 40 0 0 1 380 225" stroke="#1a365d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.3"/>
+  <path d="M340 185 A40 40 0 0 1 365 190" stroke="#c8a951" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Label -->
+  <text x="200" y="245" font-family="Georgia, serif" font-size="16" fill="#1a365d" text-anchor="middle" font-weight="bold">SQL Optimization</text>
+  <text x="200" y="265" font-family="sans-serif" font-size="11" fill="#6b7b8d" text-anchor="middle">Performance Tuning &amp; Query Analysis</text>
+</svg>

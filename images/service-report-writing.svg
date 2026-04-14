@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" rx="12" fill="#f0f4f8"/>
+  <!-- Document stack -->
+  <rect x="130" y="60" width="140" height="170" rx="6" fill="#d9e2ec" transform="rotate(3, 200, 145)"/>
+  <rect x="125" y="55" width="140" height="170" rx="6" fill="#e8eef5" transform="rotate(-1, 195, 140)"/>
+  <rect x="120" y="50" width="140" height="170" rx="6" fill="white" stroke="#1a365d" stroke-width="1.5"/>
+  <!-- Report header bar -->
+  <rect x="130" y="60" width="120" height="8" rx="2" fill="#1a365d"/>
+  <!-- Chart bars -->
+  <rect x="140" y="145" width="16" height="50" rx="2" fill="#1a365d" opacity="0.4"/>
+  <rect x="162" y="125" width="16" height="70" rx="2" fill="#1a365d" opacity="0.6"/>
+  <rect x="184" y="105" width="16" height="90" rx="2" fill="#c8a951"/>
+  <rect x="206" y="135" width="16" height="60" rx="2" fill="#1a365d" opacity="0.5"/>
+  <rect x="228" y="115" width="16" height="80" rx="2" fill="#1a365d" opacity="0.7"/>
+  <!-- Text lines -->
+  <rect x="135" y="80" width="80" height="4" rx="2" fill="#1a365d" opacity="0.3"/>
+  <rect x="135" y="90" width="60" height="4" rx="2" fill="#1a365d" opacity="0.2"/>
+  <!-- Pie chart floating -->
+  <circle cx="310" cy="90" r="30" fill="#1a365d"/>
+  <path d="M310 90 L310 60 A30 30 0 0 1 336 105 Z" fill="#c8a951"/>
+  <path d="M310 90 L336 105 A30 30 0 0 1 295 112 Z" fill="#1a365d" opacity="0.6"/>
+  <!-- Trend line floating -->
+  <polyline points="70,160 85,140 100,150 115,120 130,130" stroke="#c8a951" stroke-width="2.5" fill="none"/>
+  <circle cx="115" cy="120" r="3" fill="#c8a951"/>
+  <!-- Label -->
+  <text x="200" y="250" font-family="Georgia, serif" font-size="16" fill="#1a365d" text-anchor="middle" font-weight="bold">Report Writing</text>
+  <text x="200" y="270" font-family="sans-serif" font-size="11" fill="#6b7b8d" text-anchor="middle">Business Intelligence &amp; Analytics</text>
+</svg>

@@ -1,0 +1,7 @@
+# Sitemap location (update with your domain)
+# Sitemap: https://yourdomain.com/sitemap.xml
+
+User-agent: *
+Allow: /
+
+Disallow: /assets/

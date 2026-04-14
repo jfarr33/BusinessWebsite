@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" rx="12" fill="#f0f4f8"/>
+  <!-- Left system box -->
+  <rect x="40" y="70" width="90" height="110" rx="6" fill="#1a365d"/>
+  <rect x="48" y="78" width="74" height="20" rx="3" fill="#243f6b"/>
+  <text x="85" y="92" font-family="Consolas, monospace" font-size="9" fill="#e8eef5" text-anchor="middle">System A</text>
+  <rect x="52" y="105" width="66" height="4" rx="2" fill="#e8eef5" opacity="0.3"/>
+  <rect x="52" y="114" width="50" height="4" rx="2" fill="#e8eef5" opacity="0.3"/>
+  <rect x="52" y="123" width="58" height="4" rx="2" fill="#e8eef5" opacity="0.3"/>
+  <text x="85" y="155" font-family="Consolas, monospace" font-size="8" fill="#c8a951" text-anchor="middle">REST API</text>
+  <rect x="52" y="160" width="66" height="4" rx="2" fill="#c8a951" opacity="0.4"/>
+  <!-- Right system box -->
+  <rect x="270" y="70" width="90" height="110" rx="6" fill="#1a365d"/>
+  <rect x="278" y="78" width="74" height="20" rx="3" fill="#243f6b"/>
+  <text x="315" y="92" font-family="Consolas, monospace" font-size="9" fill="#e8eef5" text-anchor="middle">System B</text>
+  <rect x="282" y="105" width="66" height="4" rx="2" fill="#e8eef5" opacity="0.3"/>
+  <rect x="282" y="114" width="50" height="4" rx="2" fill="#e8eef5" opacity="0.3"/>
+  <rect x="282" y="123" width="58" height="4" rx="2" fill="#e8eef5" opacity="0.3"/>
+  <text x="315" y="155" font-family="Consolas, monospace" font-size="8" fill="#c8a951" text-anchor="middle">REST API</text>
+  <rect x="282" y="160" width="66" height="4" rx="2" fill="#c8a951" opacity="0.4"/>
+  <!-- Middle: middleware hub -->
+  <rect x="155" y="60" width="90" height="130" rx="8" fill="#c8a951"/>
+  <rect x="163" y="68" width="74" height="20" rx="3" fill="#b8993f"/>
+  <text x="200" y="82" font-family="Consolas, monospace" font-size="9" fill="white" text-anchor="middle">Middleware</text>
+  <!-- Python logo simplified -->
+  <circle cx="187" cy="115" r="12" fill="#1a365d" opacity="0.8"/>
+  <text x="187" y="119" font-family="Consolas, monospace" font-size="11" fill="white" text-anchor="middle">Py</text>
+  <!-- Elixir -->
+  <circle cx="213" cy="115" r="12" fill="#1a365d" opacity="0.8"/>
+  <text x="213" y="119" font-family="Consolas, monospace" font-size="11" fill="white" text-anchor="middle">Ex</text>
+  <!-- Code lines inside -->
+  <rect x="168" y="138" width="64" height="3" rx="1" fill="#1a365d" opacity="0.3"/>
+  <rect x="168" y="146" width="48" height="3" rx="1" fill="#1a365d" opacity="0.3"/>
+  <rect x="168" y="154" width="56" height="3" rx="1" fill="#1a365d" opacity="0.3"/>
+  <rect x="168" y="162" width="40" height="3" rx="1" fill="#1a365d" opacity="0.3"/>
+  <rect x="168" y="170" width="52" height="3" rx="1" fill="#1a365d" opacity="0.3"/>
+  <!-- Connection arrows left -->
+  <path d="M130 110 L155 110" stroke="#1a365d" stroke-width="2.5"/>
+  <polygon points="153,106 161,110 153,114" fill="#1a365d"/>
+  <path d="M155 140 L130 140" stroke="#1a365d" stroke-width="2.5"/>
+  <polygon points="132,136 124,140 132,144" fill="#1a365d"/>
+  <!-- Connection arrows right -->
+  <path d="M245 110 L270 110" stroke="#1a365d" stroke-width="2.5"/>
+  <polygon points="268,106 276,110 268,114" fill="#1a365d"/>
+  <path d="M270 140 L245 140" stroke="#1a365d" stroke-width="2.5"/>
+  <polygon points="247,136 239,140 247,144" fill="#1a365d"/>
+  <!-- Database below -->
+  <ellipse cx="200" cy="215" rx="30" ry="10" fill="#1a365d"/>
+  <rect x="170" y="215" width="60" height="25" fill="#1a365d"/>
+  <ellipse cx="200" cy="240" rx="30" ry="10" fill="#1a365d"/>
+  <ellipse cx="200" cy="215" rx="30" ry="10" fill="#243f6b"/>
+  <!-- Arrow from middleware to DB -->
+  <line x1="200" y1="190" x2="200" y2="205" stroke="#c8a951" stroke-width="2"/>
+  <polygon points="196,203 200,211 204,203" fill="#c8a951"/>
+  <!-- Label -->
+  <text x="200" y="272" font-family="Georgia, serif" font-size="16" fill="#1a365d" text-anchor="middle" font-weight="bold">Python &amp; Elixir Middleware</text>
+  <text x="200" y="290" font-family="sans-serif" font-size="11" fill="#6b7b8d" text-anchor="middle">API Integration &amp; Automation</text>
+</svg>
