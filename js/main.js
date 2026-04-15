@@ -72,11 +72,24 @@
             }
 
             if (isValid) {
-                // Form is valid — replace with your submission logic
-                var formWrapper = contactForm.closest('.contact-form-wrapper');
-                if (formWrapper) {
-                    formWrapper.innerHTML = '<div class="form-success">Thank you for your message. We\'ll be in touch shortly.</div>';
-                }
+                // Form is valid — submit to Formspree via fetch
+                var formData = new FormData(contactForm);
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                }).then(function (response) {
+                    if (response.ok) {
+                        var formWrapper = contactForm.closest('.contact-form-wrapper');
+                        if (formWrapper) {
+                            formWrapper.innerHTML = '<div class="form-success">Thank you for your message. We\'ll be in touch shortly.</div>';
+                        }
+                    } else {
+                        alert('Something went wrong. Please try again or email us directly.');
+                    }
+                }).catch(function () {
+                    alert('Something went wrong. Please try again or email us directly.');
+                });
             }
         });
     }
