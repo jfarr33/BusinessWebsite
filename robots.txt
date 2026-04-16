@@ -1,7 +1,4 @@
-# Sitemap location (update with your domain)
-# Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://businesstechadvantages.com/sitemap.xml
 
 User-agent: *
 Allow: /
-
-Disallow: /assets/
