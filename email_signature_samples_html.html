@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Production Email Signature Options</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      background: #f5f6f8;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333333;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin: 0 0 8px;
+      color: #1d2d5c;
+    }
+
+    .intro {
+      max-width: 900px;
+      margin-bottom: 24px;
+      line-height: 1.5;
+      color: #555555;
+    }
+
+    .sample-wrap {
+      background: #ffffff;
+      border: 1px solid #dddddd;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 0 0 32px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .sample-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1d2d5c;
+      margin-bottom: 8px;
+    }
+
+    .sample-note {
+      font-size: 13px;
+      color: #666666;
+      margin-bottom: 16px;
+      line-height: 1.45;
+      max-width: 900px;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: minmax(360px, 720px) 260px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .preview-label {
+      font-size: 12px;
+      color: #777777;
+      font-weight: bold;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .email-preview {
+      background: #ffffff;
+      border: 1px solid #eeeeee;
+      padding: 18px;
+      overflow-x: auto;
+    }
+
+    .desktop-preview {
+      max-width: 720px;
+    }
+
+    .mobile-frame {
+      width: 240px;
+      background: #ffffff;
+      border: 10px solid #222222;
+      border-radius: 24px;
+      padding: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .mobile-frame .email-preview {
+      border: 0;
+      padding: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .code-note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #777777;
+      line-height: 1.4;
+    }
+
+    .sig-img {
+      border: 0;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    @media only screen and (max-width: 860px) {
+      .preview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-frame {
+        width: 260px;
+      }
+    }
+
+    @media only screen and (max-width: 520px) {
+      body {
+        padding: 12px;
+      }
+
+      .sample-wrap {
+        padding: 14px;
+      }
+
+      .email-preview {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Production Email Signature Options</h1>
+  <p class="intro">
+    These samples now use the actual Farr Insurance Group, ISU Lemoine, and ISU Network Member logo URLs. Each option shows a desktop preview and a simulated mobile-width preview. The page styling is only for comparison. The signature blocks themselves use table-based HTML with inline styles.
+  </p>
+
+  <div class="sample-wrap">
+    <div class="sample-title">Option 1: Recommended Stacked Production Signature</div>
+    <div class="sample-note">Best overall choice for desktop and mobile. Employee information stays readable, Farr is the primary brand, and ISU Lemoine plus ISU Network Member sit below it.</div>
+    <div class="preview-grid">
+      <div>
+        <div class="preview-label">Desktop view</div>
+        <div class="email-preview desktop-preview">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #555555; max-width: 560px; width: 100%;">
+            <tr><td style="font-size: 14px; color: #333333; padding-bottom: 14px;">Thanks,</td></tr>
+            <tr><td style="font-family: Georgia, 'Times New Roman', serif; font-size: 22px; color: #1d2d5c; line-height: 1.2;">Sam Farr, CIC</td></tr>
+            <tr><td style="font-size: 13px; color: #666666; padding-top: 2px; padding-bottom: 12px;">COO | Chief Operating Officer</td></tr>
+            <tr>
+              <td style="border-top: 1px solid #777777; padding-top: 12px; padding-bottom: 12px;">
+                <span style="font-size: 13px; line-height: 1.6; color: #666666;">Office: 225-427-1700<br />Direct: 225-304-0933<br />Cell: 225-308-9882<br />Fax: 225-380-2220</span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-top: 4px;">
+                <img class="sig-img" src="https://static.wixstatic.com/media/c6aa2c_1fc87a8d47b6425fa40317a03b648c67~mv2.png" alt="Farr Insurance Group" width="300" style="display: block; border: 0; max-width: 300px; height: auto; margin-bottom: 10px;" />
+                <img class="sig-img" src="https://static.wixstatic.com/media/c6aa2c_3d8bfebd90d0484b841d5e15d87b5ab3~mv2.jpg" alt="ISU Lemoine Insurance Agency" width="190" style="display: inline-block; border: 0; max-width: 190px; height: auto; margin-right: 10px; margin-bottom: 8px; vertical-align: middle;" />
+                <img class="sig-img" src="https://static.wixstatic.com/media/c6aa2c_48d17360a39f4e5bb0b9110b5b177ead~mv2.jpg" alt="ISU Insurance Agency Network Member" width="180" style="display: inline-block; border: 0; max-width: 180px; height: auto; margin-bottom: 8px; vertical-align: middle;" />
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="preview-label">Mobile view</div>
+        <div class="mobile-frame">
+          <div class="email-preview">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #555555; max-width: 220px; width: 100%;">
+              <tr><td style="font-size: 14px; color: #333333; padding-bottom: 14px;">Thanks,</td></tr>
+              <tr><td style="font-family: Georgia, 'Times New Roman', serif; font-size: 21px; color: #1d2d5c; line-height: 1.2;">Sam Farr, CIC</td></tr>
+              <tr><td style="font-size: 13px; color: #666666; padding-top: 2px; padding-bottom: 12px;">COO | Chief Operating Officer</td></tr>
+              <tr><td style="border-top: 1px solid #777777; padding-top: 12px; padding-bottom: 12px; font-size: 13px; line-height: 1.6; color: #666666;">Office: 225-427-1700<br />Direct: 225-304-0933<br />Cell: 225-308-9882<br />Fax: 225-380-2220</td></tr>
+              <tr><td style="padding-top: 4px;"><img src="https://static.wixstatic.com/media/c6aa2c_1fc87a8d47b6425fa40317a03b648c67~mv2.png" alt="Farr Insurance Group" width="210" style="display: block; border: 0; max-width: 210px; height: auto; margin-bottom: 10px;" /><img src="https://static.wixstatic.com/media/c6aa2c_3d8bfebd90d0484b841d5e15d87b5ab3~mv2.jpg" alt="ISU Lemoine Insurance Agency" width="160" style="display: block; border: 0; max-width: 160px; height: auto; margin-bottom: 8px;" /><img src="https://static.wixstatic.com/media/c6aa2c_48d17360a39f4e5bb0b9110b5b177ead~mv2.jpg" alt="ISU Insurance Agency Network Member" width="155" style="display: block; border: 0; max-width: 155px; height: auto;" /></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sample-wrap">
+    <div class="sample-title">Option 2: Farr Logo First</div>
+    <div class="sample-note">Best when Farr Insurance Group should appear before the person’s name. Strong branding, but a little heavier at the top.</div>
+    <div class="preview-grid">
+      <div>
+        <div class="preview-label">Desktop view</div>
+        <div class="email-preview desktop-preview">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #555555; max-width: 560px; width: 100%;">
+            <tr><td style="font-size: 14px; color: #333333; padding-bottom: 10px;">Thanks,</td></tr>
+            <tr><td style="padding-bottom: 14px;"><img src="https://static.wixstatic.com/media/c6aa2c_1fc87a8d47b6425fa40317a03b648c67~mv2.png" alt="Farr Insurance Group" width="300" style="display: block; border: 0; max-width: 300px; height: auto;" /></td></tr>
+            <tr><td style="font-family: Georgia, 'Times New Roman', serif; font-size: 22px; color: #1d2d5c; line-height: 1.2;">Sam Farr, CIC</td></tr>
+            <tr><td style="font-size: 13px; color: #666666; padding-top: 2px; padding-bottom: 10px;">COO | Chief Operating Officer</td></tr>
+            <tr><td style="font-size: 13px; line-height: 1.6; color: #666666; padding-bottom: 12px;">Office: 225-427-1700<br />Direct: 225-304-0933<br />Cell: 225-308-9882<br />Fax: 225-380-2220</td></tr>
+            <tr><td><img src="https://static.wixstatic.com/media/c6aa2c_3d8bfebd90d0484b841d5e15d87b5ab3~mv2.jpg" alt="ISU Lemoine Insurance Agency" width="190" style="display: inline-block; border: 0; max-width: 190px; height: auto; margin-right: 10px; margin-bottom: 8px; vertical-align: middle;" /><img src="https://static.wixstatic.com/media/c6aa2c_48d17360a39f4e5bb0b9110b5b177ead~mv2.jpg" alt="ISU Insurance Agency Network Member" width="180" style="display: inline-block; border: 0; max-width: 180px; height: auto; margin-bottom: 8px; vertical-align: middle;" /></td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="preview-label">Mobile view</div>
+        <div class="mobile-frame"><div class="email-preview">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #555555; max-width: 220px; width: 100%;">
+            <tr><td style="font-size: 14px; color: #333333; padding-bottom: 10px;">Thanks,</td></tr>
+            <tr><td style="padding-bottom: 14px;"><img src="https://static.wixstatic.com/media/c6aa2c_1fc87a8d47b6425fa40317a03b648c67~mv2.png" alt="Farr Insurance Group" width="210" style="display: block; border: 0; max-width: 210px; height: auto;" /></td></tr>
+            <tr><td style="font-family: Georgia, 'Times New Roman', serif; font-size: 21px; color: #1d2d5c; line-height: 1.2;">Sam Farr, CIC</td></tr>
+            <tr><td style="font-size: 13px; color: #666666; padding-top: 2px; padding-bottom: 10px;">COO | Chief Operating Officer</td></tr>
+            <tr><td style="font-size: 13px; line-height: 1.6; color: #666666; padding-bottom: 12px;">Office: 225-427-1700<br />Direct: 225-304-0933<br />Cell: 225-308-9882<br />Fax: 225-380-2220</td></tr>
+            <tr><td><img src="https://static.wixstatic.com/media/c6aa2c_3d8bfebd90d0484b841d5e15d87b5ab3~mv2.jpg" alt="ISU Lemoine Insurance Agency" width="160" style="display: block; border: 0; max-width: 160px; height: auto; margin-bottom: 8px;" /><img src="https://static.wixstatic.com/media/c6aa2c_48d17360a39f4e5bb0b9110b5b177ead~mv2.jpg" alt="ISU Insurance Agency Network Member" width="155" style="display: block; border: 0; max-width: 155px; height: auto;" /></td></tr>
+          </table>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sample-wrap">
+    <div class="sample-title">Option 3: Compact Production Signature</div>
+    <div class="sample-note">Best if you want the shortest signature. This is the cleanest option for long email threads.</div>
+    <div class="preview-grid">
+      <div>
+        <div class="preview-label">Desktop view</div>
+        <div class="email-preview desktop-preview">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #555555; max-width: 560px; width: 100%;">
+            <tr><td style="font-size: 14px; color: #333333; padding-bottom: 12px;">Thanks,</td></tr>
+            <tr><td style="font-family: Georgia, 'Times New Roman', serif; font-size: 21px; color: #1d2d5c; line-height: 1.2;">Sam Farr, CIC</td></tr>
+            <tr><td style="font-size: 13px; color: #666666; padding-top: 2px; padding-bottom: 8px;">COO | Chief Operating Officer</td></tr>
+            <tr><td style="font-size: 13px; color: #555555; line-height: 1.5; padding-bottom: 8px;">Farr Insurance Group | ISU Lemoine Insurance Agency<br />ISU Insurance Agency Network Member</td></tr>
+            <tr><td style="font-size: 13px; line-height: 1.55; color: #666666; padding-bottom: 12px;">O: 225-427-1700 | D: 225-304-0933<br />C: 225-308-9882 | F: 225-380-2220</td></tr>
+            <tr><td><img src="https://static.wixstatic.com/media/c6aa2c_1fc87a8d47b6425fa40317a03b648c67~mv2.png" alt="Farr Insurance Group" width="170" style="display: inline-block; border: 0; max-width: 170px; height: auto; margin-right: 8px; margin-bottom: 8px; vertical-align: middle;" /><img src="https://static.wixstatic.com/media/c6aa2c_3d8bfebd90d0484b841d5e15d87b5ab3~mv2.jpg" alt="ISU Lemoine Insurance Agency" width="145" style="display: inline-block; border: 0; max-width: 145px; height: auto; margin-right: 8px; margin-bottom: 8px; vertical-align: middle;" /><img src="https://static.wixstatic.com/media/c6aa2c_48d17360a39f4e5bb0b9110b5b177ead~mv2.jpg" alt="ISU Insurance Agency Network Member" width="140" style="display: inline-block; border: 0; max-width: 140px; height: auto; margin-bottom: 8px; vertical-align: middle;" /></td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="preview-label">Mobile view</div>
+        <div class="mobile-frame"><div class="email-preview">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #555555; max-width: 220px; width: 100%;">
+            <tr><td style="font-size: 14px; color: #333333; padding-bottom: 12px;">Thanks,</td></tr>
+            <tr><td style="font-family: Georgia, 'Times New Roman', serif; font-size: 21px; color: #1d2d5c; line-height: 1.2;">Sam Farr, CIC</td></tr>
+            <tr><td style="font-size: 13px; color: #666666; padding-top: 2px; padding-bottom: 8px;">COO | Chief Operating Officer</td></tr>
+            <tr><td style="font-size: 13px; color: #555555; line-height: 1.5; padding-bottom: 8px;">Farr Insurance Group<br />ISU Lemoine Insurance Agency<br />ISU Insurance Agency Network Member</td></tr>
+            <tr><td style="font-size: 13px; line-height: 1.55; color: #666666; padding-bottom: 12px;">O: 225-427-1700<br />D: 225-304-0933<br />C: 225-308-9882<br />F: 225-380-2220</td></tr>
+            <tr><td><img src="https://static.wixstatic.com/media/c6aa2c_1fc87a8d47b6425fa40317a03b648c67~mv2.png" alt="Farr Insurance Group" width="165" style="display: block; border: 0; max-width: 165px; height: auto; margin-bottom: 8px;" /><img src="https://static.wixstatic.com/media/c6aa2c_3d8bfebd90d0484b841d5e15d87b5ab3~mv2.jpg" alt="ISU Lemoine Insurance Agency" width="145" style="display: block; border: 0; max-width: 145px; height: auto; margin-bottom: 8px;" /><img src="https://static.wixstatic.com/media/c6aa2c_48d17360a39f4e5bb0b9110b5b177ead~mv2.jpg" alt="ISU Insurance Agency Network Member" width="140" style="display: block; border: 0; max-width: 140px; height: auto;" /></td></tr>
+          </table>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sample-wrap">
+    <div class="sample-title">Option 4: Two-Column Desktop Concept, Not Recommended for Company Standard</div>
+    <div class="sample-note">This is included only as a desktop concept. The vertical bar does not reliably disappear in real email clients unless you use responsive CSS, which many email apps handle inconsistently. For a company-wide signature, Option 1 or Option 3 is safer.</div>
+    <div class="preview-grid">
+      <div>
+        <div class="preview-label">Desktop view</div>
+        <div class="email-preview desktop-preview">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #555555; max-width: 620px; width: 100%;">
+            <tr><td style="font-size: 14px; color: #333333; padding-bottom: 14px;" colspan="2">Thanks,</td></tr>
+            <tr>
+              <td valign="top" style="padding-right: 18px;"><div style="font-family: Georgia, 'Times New Roman', serif; font-size: 22px; color: #1d2d5c; line-height: 1.2;">Sam Farr, CIC</div><div style="font-size: 13px; color: #666666; padding-top: 2px; padding-bottom: 10px;">COO | Chief Operating Officer</div><div style="font-size: 13px; line-height: 1.6; color: #666666;">Office: 225-427-1700<br />Direct: 225-304-0933<br />Cell: 225-308-9882<br />Fax: 225-380-2220</div></td>
+              <td valign="top" width="210" style="padding-left: 12px;"><img src="https://static.wixstatic.com/media/c6aa2c_3d8bfebd90d0484b841d5e15d87b5ab3~mv2.jpg" alt="ISU Lemoine Insurance Agency" width="190" style="display: block; border: 0; max-width: 190px; height: auto; margin-bottom: 8px;" /><img src="https://static.wixstatic.com/media/c6aa2c_48d17360a39f4e5bb0b9110b5b177ead~mv2.jpg" alt="ISU Insurance Agency Network Member" width="180" style="display: block; border: 0; max-width: 180px; height: auto;" /></td>
+            </tr>
+            <tr><td colspan="2" style="padding-top: 14px;"><img src="https://static.wixstatic.com/media/c6aa2c_1fc87a8d47b6425fa40317a03b648c67~mv2.png" alt="Farr Insurance Group" width="300" style="display: block; border: 0; max-width: 300px; height: auto;" /></td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="preview-label">Mobile view</div>
+        <div class="mobile-frame"><div class="email-preview">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #555555; max-width: 220px; width: 100%;">
+            <tr><td style="font-size: 14px; color: #333333; padding-bottom: 14px;">Thanks,</td></tr>
+            <tr><td><div style="font-family: Georgia, 'Times New Roman', serif; font-size: 21px; color: #1d2d5c; line-height: 1.2;">Sam Farr, CIC</div><div style="font-size: 13px; color: #666666; padding-top: 2px; padding-bottom: 10px;">COO | Chief Operating Officer</div><div style="font-size: 13px; line-height: 1.6; color: #666666; padding-bottom: 12px;">Office: 225-427-1700<br />Direct: 225-304-0933<br />Cell: 225-308-9882<br />Fax: 225-380-2220</div><img src="https://static.wixstatic.com/media/c6aa2c_1fc87a8d47b6425fa40317a03b648c67~mv2.png" alt="Farr Insurance Group" width="210" style="display: block; border: 0; max-width: 210px; height: auto; margin-bottom: 8px;" /><img src="https://static.wixstatic.com/media/c6aa2c_3d8bfebd90d0484b841d5e15d87b5ab3~mv2.jpg" alt="ISU Lemoine Insurance Agency" width="160" style="display: block; border: 0; max-width: 160px; height: auto; margin-bottom: 8px;" /><img src="https://static.wixstatic.com/media/c6aa2c_48d17360a39f4e5bb0b9110b5b177ead~mv2.jpg" alt="ISU Insurance Agency Network Member" width="155" style="display: block; border: 0; max-width: 155px; height: auto;" /></td></tr>
+          </table>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sample-wrap">
+    <div class="sample-title">Option 5: Brand Bar Production Signature</div>
+    <div class="sample-note">Good if you want all three logos grouped into one visual brand section beneath the contact information.</div>
+    <div class="preview-grid">
+      <div>
+        <div class="preview-label">Desktop view</div>
+        <div class="email-preview desktop-preview">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #555555; max-width: 620px; width: 100%;">
+            <tr><td style="font-size: 14px; color: #333333; padding-bottom: 14px;">Thanks,</td></tr>
+            <tr><td style="font-family: Georgia, 'Times New Roman', serif; font-size: 22px; color: #1d2d5c; line-height: 1.2;">Sam Farr, CIC</td></tr>
+            <tr><td style="font-size: 13px; color: #666666; padding-top: 2px; padding-bottom: 10px;">COO | Chief Operating Officer</td></tr>
+            <tr><td style="font-size: 13px; line-height: 1.6; color: #666666; padding-bottom: 12px;">Office: 225-427-1700<br />Direct: 225-304-0933<br />Cell: 225-308-9882<br />Fax: 225-380-2220</td></tr>
+            <tr><td style="border-top: 1px solid #777777; padding-top: 12px;"><img src="https://static.wixstatic.com/media/c6aa2c_1fc87a8d47b6425fa40317a03b648c67~mv2.png" alt="Farr Insurance Group" width="260" style="display: inline-block; border: 0; max-width: 260px; height: auto; margin-right: 10px; margin-bottom: 8px; vertical-align: middle;" /><img src="https://static.wixstatic.com/media/c6aa2c_3d8bfebd90d0484b841d5e15d87b5ab3~mv2.jpg" alt="ISU Lemoine Insurance Agency" width="170" style="display: inline-block; border: 0; max-width: 170px; height: auto; margin-right: 10px; margin-bottom: 8px; vertical-align: middle;" /><img src="https://static.wixstatic.com/media/c6aa2c_48d17360a39f4e5bb0b9110b5b177ead~mv2.jpg" alt="ISU Insurance Agency Network Member" width="160" style="display: inline-block; border: 0; max-width: 160px; height: auto; margin-bottom: 8px; vertical-align: middle;" /></td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="preview-label">Mobile view</div>
+        <div class="mobile-frame"><div class="email-preview">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color: #555555; max-width: 220px; width: 100%;">
+            <tr><td style="font-size: 14px; color: #333333; padding-bottom: 14px;">Thanks,</td></tr>
+            <tr><td style="font-family: Georgia, 'Times New Roman', serif; font-size: 21px; color: #1d2d5c; line-height: 1.2;">Sam Farr, CIC</td></tr>
+            <tr><td style="font-size: 13px; color: #666666; padding-top: 2px; padding-bottom: 10px;">COO | Chief Operating Officer</td></tr>
+            <tr><td style="font-size: 13px; line-height: 1.6; color: #666666; padding-bottom: 12px;">Office: 225-427-1700<br />Direct: 225-304-0933<br />Cell: 225-308-9882<br />Fax: 225-380-2220</td></tr>
+            <tr><td style="border-top: 1px solid #777777; padding-top: 12px;"><img src="https://static.wixstatic.com/media/c6aa2c_1fc87a8d47b6425fa40317a03b648c67~mv2.png" alt="Farr Insurance Group" width="210" style="display: block; border: 0; max-width: 210px; height: auto; margin-bottom: 8px;" /><img src="https://static.wixstatic.com/media/c6aa2c_3d8bfebd90d0484b841d5e15d87b5ab3~mv2.jpg" alt="ISU Lemoine Insurance Agency" width="160" style="display: block; border: 0; max-width: 160px; height: auto; margin-bottom: 8px;" /><img src="https://static.wixstatic.com/media/c6aa2c_48d17360a39f4e5bb0b9110b5b177ead~mv2.jpg" alt="ISU Insurance Agency Network Member" width="155" style="display: block; border: 0; max-width: 155px; height: auto;" /></td></tr>
+          </table>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
