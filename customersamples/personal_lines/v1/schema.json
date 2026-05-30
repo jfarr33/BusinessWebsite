@@ -1,0 +1,7211 @@
+{
+  "form_id": "personal_lines",
+  "version": "v1",
+  "title": "Personal Lines Quote Intake",
+  "description": "Comprehensive multi-line insurance quote collection form. Select insurance types and provide relevant property/auto/life details.",
+  "status": "draft",
+  "created_at": "2026-01-01T00:00:00Z",
+  "updated_at": "2026-01-15T00:00:00Z",
+  "tenant_id": "healey_insurance_group",
+  "submit_endpoint": "/api/submit",
+  "field_mapping": {
+    "_comment": "Configuration for mapping parsed policy data (vehicles, insureds, drivers) to form field names. Allows the same extraction logic to work across different form schemas.",
+    "vehicles": {
+      "prefix": "vehicle",
+      "fields": [
+        "vin",
+        "year",
+        "make",
+        "model"
+      ]
+    },
+    "applicant": {
+      "first_name": "first_name",
+      "last_name": "last_name",
+      "date_of_birth": "date_of_birth",
+      "gender": "gender",
+      "marital_status": "marital_status",
+      "email": "email",
+      "phone": "phone",
+      "occupation": "occupation",
+      "mailing_street_address": "mailing_street_address",
+      "mailing_address_line_2": "mailing_address_line_2",
+      "mailing_city": "mailing_city",
+      "mailing_state": "mailing_state",
+      "mailing_zip_code": "mailing_zip_code",
+      "license_number": "drivers_license_number",
+      "license_state": "drivers_license_state"
+    },
+    "co_applicant": {
+      "enable_field": "has_co_applicant",
+      "first_name": "co_applicant_first_name",
+      "last_name": "co_applicant_last_name",
+      "date_of_birth": "co_applicant_date_of_birth",
+      "gender": "co_applicant_gender",
+      "license_number": "co_applicant_drivers_license_number",
+      "license_state": "co_applicant_drivers_license_state"
+    },
+    "drivers": {
+      "enable_field": "has_additional_drivers",
+      "prefix": "driver",
+      "field_mapping": {
+        "first_name": "name_first",
+        "last_name": "name_last",
+        "date_of_birth": "date_of_birth",
+        "gender": "gender",
+        "relationship_to_insured": "relationship",
+        "license_number": "license_number",
+        "license_state": "license_state"
+      },
+      "toggle_suffix": "_add_another",
+      "value_mappings": {
+        "license_state": {
+          "_comment": "Map state names to state codes (normalize Claude's extraction)",
+          "Alabama": "AL",
+          "Alaska": "AK",
+          "Arizona": "AZ",
+          "Arkansas": "AR",
+          "California": "CA",
+          "Colorado": "CO",
+          "Connecticut": "CT",
+          "Delaware": "DE",
+          "Florida": "FL",
+          "Georgia": "GA",
+          "Hawaii": "HI",
+          "Idaho": "ID",
+          "Illinois": "IL",
+          "Indiana": "IN",
+          "Iowa": "IA",
+          "Kansas": "KS",
+          "Kentucky": "KY",
+          "Louisiana": "LA",
+          "Maine": "ME",
+          "Maryland": "MD",
+          "Massachusetts": "MA",
+          "Michigan": "MI",
+          "Minnesota": "MN",
+          "Mississippi": "MS",
+          "Missouri": "MO",
+          "Montana": "MT",
+          "Nebraska": "NE",
+          "Nevada": "NV",
+          "New Hampshire": "NH",
+          "New Jersey": "NJ",
+          "New Mexico": "NM",
+          "New York": "NY",
+          "North Carolina": "NC",
+          "North Dakota": "ND",
+          "Ohio": "OH",
+          "Oklahoma": "OK",
+          "Oregon": "OR",
+          "Pennsylvania": "PA",
+          "Rhode Island": "RI",
+          "South Carolina": "SC",
+          "South Dakota": "SD",
+          "Tennessee": "TN",
+          "Texas": "TX",
+          "Utah": "UT",
+          "Vermont": "VT",
+          "Virginia": "VA",
+          "Washington": "WA",
+          "West Virginia": "WV",
+          "Wisconsin": "WI",
+          "Wyoming": "WY"
+        },
+        "relationship_to_insured": {
+          "_comment": "Map relationship descriptions to option values",
+          "Spouse": "spouse",
+          "spouse": "spouse",
+          "Child": "child",
+          "child": "child",
+          "Parent": "parent",
+          "parent": "parent",
+          "Sibling": "sibling",
+          "sibling": "sibling",
+          "Sister": "sibling",
+          "Brother": "sibling",
+          "Son": "child",
+          "Daughter": "child",
+          "Mother": "parent",
+          "Father": "parent",
+          "Other": "other",
+          "other": "other"
+        }
+      }
+    }
+  },
+  "theme": {
+    "name": "default",
+    "layout_width": "standard"
+  },
+  "default_layout": {
+    "desktop": 12,
+    "tablet": 12,
+    "mobile": 12
+  },
+  "option_sets": {
+    "insurance_types": [
+      {
+        "label": "Homeowners/Renters",
+        "value": "homeowners"
+      },
+      {
+        "label": "Auto",
+        "value": "auto"
+      },
+      {
+        "label": "Motorcycle",
+        "value": "motorcycle"
+      },
+      {
+        "label": "Umbrella",
+        "value": "umbrella"
+      }
+    ],
+    "referral_sources": [
+      {
+        "label": "Friend or Family",
+        "value": "friend_family"
+      },
+      {
+        "label": "Online Search",
+        "value": "online_search"
+      },
+      {
+        "label": "Insurance Agent",
+        "value": "agent"
+      },
+      {
+        "label": "Advertisement",
+        "value": "advertisement"
+      },
+      {
+        "label": "Social Media",
+        "value": "social_media"
+      },
+      {
+        "label": "Other",
+        "value": "other"
+      }
+    ],
+    "yes_no": [
+      {
+        "label": "Yes",
+        "value": "yes"
+      },
+      {
+        "label": "No",
+        "value": "no"
+      }
+    ],
+    "us_states": [
+      {
+        "label": "Alabama",
+        "value": "AL"
+      },
+      {
+        "label": "Alaska",
+        "value": "AK"
+      },
+      {
+        "label": "Arizona",
+        "value": "AZ"
+      },
+      {
+        "label": "Arkansas",
+        "value": "AR"
+      },
+      {
+        "label": "California",
+        "value": "CA"
+      },
+      {
+        "label": "Colorado",
+        "value": "CO"
+      },
+      {
+        "label": "Connecticut",
+        "value": "CT"
+      },
+      {
+        "label": "Delaware",
+        "value": "DE"
+      },
+      {
+        "label": "Florida",
+        "value": "FL"
+      },
+      {
+        "label": "Georgia",
+        "value": "GA"
+      },
+      {
+        "label": "Hawaii",
+        "value": "HI"
+      },
+      {
+        "label": "Idaho",
+        "value": "ID"
+      },
+      {
+        "label": "Illinois",
+        "value": "IL"
+      },
+      {
+        "label": "Indiana",
+        "value": "IN"
+      },
+      {
+        "label": "Iowa",
+        "value": "IA"
+      },
+      {
+        "label": "Kansas",
+        "value": "KS"
+      },
+      {
+        "label": "Kentucky",
+        "value": "KY"
+      },
+      {
+        "label": "Louisiana",
+        "value": "LA"
+      },
+      {
+        "label": "Maine",
+        "value": "ME"
+      },
+      {
+        "label": "Maryland",
+        "value": "MD"
+      },
+      {
+        "label": "Massachusetts",
+        "value": "MA"
+      },
+      {
+        "label": "Michigan",
+        "value": "MI"
+      },
+      {
+        "label": "Minnesota",
+        "value": "MN"
+      },
+      {
+        "label": "Mississippi",
+        "value": "MS"
+      },
+      {
+        "label": "Missouri",
+        "value": "MO"
+      },
+      {
+        "label": "Montana",
+        "value": "MT"
+      },
+      {
+        "label": "Nebraska",
+        "value": "NE"
+      },
+      {
+        "label": "Nevada",
+        "value": "NV"
+      },
+      {
+        "label": "New Hampshire",
+        "value": "NH"
+      },
+      {
+        "label": "New Jersey",
+        "value": "NJ"
+      },
+      {
+        "label": "New Mexico",
+        "value": "NM"
+      },
+      {
+        "label": "New York",
+        "value": "NY"
+      },
+      {
+        "label": "North Carolina",
+        "value": "NC"
+      },
+      {
+        "label": "North Dakota",
+        "value": "ND"
+      },
+      {
+        "label": "Ohio",
+        "value": "OH"
+      },
+      {
+        "label": "Oklahoma",
+        "value": "OK"
+      },
+      {
+        "label": "Oregon",
+        "value": "OR"
+      },
+      {
+        "label": "Pennsylvania",
+        "value": "PA"
+      },
+      {
+        "label": "Rhode Island",
+        "value": "RI"
+      },
+      {
+        "label": "South Carolina",
+        "value": "SC"
+      },
+      {
+        "label": "South Dakota",
+        "value": "SD"
+      },
+      {
+        "label": "Tennessee",
+        "value": "TN"
+      },
+      {
+        "label": "Texas",
+        "value": "TX"
+      },
+      {
+        "label": "Utah",
+        "value": "UT"
+      },
+      {
+        "label": "Vermont",
+        "value": "VT"
+      },
+      {
+        "label": "Virginia",
+        "value": "VA"
+      },
+      {
+        "label": "Washington",
+        "value": "WA"
+      },
+      {
+        "label": "West Virginia",
+        "value": "WV"
+      },
+      {
+        "label": "Wisconsin",
+        "value": "WI"
+      },
+      {
+        "label": "Wyoming",
+        "value": "WY"
+      }
+    ],
+    "gender_options": [
+      {
+        "label": "Male",
+        "value": "male"
+      },
+      {
+        "label": "Female",
+        "value": "female"
+      },
+      {
+        "label": "Non-Binary",
+        "value": "non_binary"
+      }
+    ],
+    "marital_statuses": [
+      {
+        "label": "Single",
+        "value": "single"
+      },
+      {
+        "label": "Married",
+        "value": "married"
+      },
+      {
+        "label": "Domestic Partner",
+        "value": "domestic_partner"
+      },
+      {
+        "label": "Widowed",
+        "value": "widowed"
+      },
+      {
+        "label": "Separated",
+        "value": "separated"
+      },
+      {
+        "label": "Divorced",
+        "value": "divorced"
+      }
+    ],
+    "education_levels": [
+      {
+        "label": "No High School Diploma or GED",
+        "value": "no_diploma"
+      },
+      {
+        "label": "High School",
+        "value": "high_school"
+      },
+      {
+        "label": "Associate Degree",
+        "value": "associate"
+      },
+      {
+        "label": "Bachelor's Degree",
+        "value": "bachelors"
+      },
+      {
+        "label": "Graduate Degree",
+        "value": "graduate"
+      },
+      {
+        "label": "Law Degree",
+        "value": "law"
+      },
+      {
+        "label": "Medical Degree",
+        "value": "medical"
+      },
+      {
+        "label": "Some College",
+        "value": "some_college"
+      },
+      {
+        "label": "Other",
+        "value": "other"
+      },
+      {
+        "label": "Prefer Not to Answer",
+        "value": "prefer_not_to_answer"
+      }
+    ],
+    "roof_types": [
+      {
+        "label": "Asphalt Shingles",
+        "value": "asphalt"
+      },
+      {
+        "label": "Metal",
+        "value": "metal"
+      },
+      {
+        "label": "Tile",
+        "value": "tile"
+      },
+      {
+        "label": "Wood Shake",
+        "value": "wood"
+      },
+      {
+        "label": "Slate",
+        "value": "slate"
+      },
+      {
+        "label": "Other",
+        "value": "other"
+      }
+    ],
+    "heating_types": [
+      {
+        "label": "Forced Air",
+        "value": "forced_air"
+      },
+      {
+        "label": "Baseboard",
+        "value": "baseboard"
+      },
+      {
+        "label": "Radiant",
+        "value": "radiant"
+      },
+      {
+        "label": "Oil Heat",
+        "value": "oil"
+      },
+      {
+        "label": "Other",
+        "value": "other"
+      }
+    ],
+    "life_insurance_types": [
+      {
+        "label": "Term Life",
+        "value": "term"
+      },
+      {
+        "label": "Whole Life",
+        "value": "whole"
+      },
+      {
+        "label": "Universal Life",
+        "value": "universal"
+      },
+      {
+        "label": "Variable Universal Life",
+        "value": "vul"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "Spouse",
+        "value": "spouse"
+      },
+      {
+        "label": "Child",
+        "value": "child"
+      },
+      {
+        "label": "Parent",
+        "value": "parent"
+      },
+      {
+        "label": "Sibling",
+        "value": "sibling"
+      },
+      {
+        "label": "Other",
+        "value": "other"
+      }
+    ],
+    "vehicle_uses": [
+      {
+        "label": "To/From Work",
+        "value": "commute"
+      },
+      {
+        "label": "Pleasure",
+        "value": "pleasure"
+      },
+      {
+        "label": "Business",
+        "value": "business"
+      },
+      {
+        "label": "Farm",
+        "value": "farm"
+      }
+    ],
+    "ownership_types": [
+      {
+        "label": "Own",
+        "value": "own"
+      },
+      {
+        "label": "Lease",
+        "value": "lease"
+      }
+    ],
+    "deductible_amounts": [
+      {
+        "label": "$250",
+        "value": "250"
+      },
+      {
+        "label": "$500",
+        "value": "500"
+      },
+      {
+        "label": "$750",
+        "value": "750"
+      },
+      {
+        "label": "$1000",
+        "value": "1000"
+      },
+      {
+        "label": "$1500",
+        "value": "1500"
+      },
+      {
+        "label": "$2500",
+        "value": "2500"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "insurance_selection",
+      "title": "Insurance Selection",
+      "description": "What types of insurance are you interested in? Select Policy Start Date and how you heard about us.",
+      "order": 1,
+      "layout": {
+        "type": "grid",
+        "columns": 12
+      },
+      "fields": [
+        {
+          "name": "insurance_types",
+          "label": "Select Insurance Types",
+          "type": "checkbox_group",
+          "order": 1,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "insurance_types",
+          "ui": {
+            "option_layout": "grid",
+            "grid_columns": 2,
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "policy_start_date",
+          "label": "Desired Policy Start Date",
+          "type": "date",
+          "order": 2,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "referral_source",
+          "label": "How did you hear about us?",
+          "type": "text",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "placeholder": "e.g. Google, referral, social media\u2026",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "section_id": "applicant_information",
+      "title": "Primary Applicant",
+      "description": "Tell us about the primary applicant.",
+      "order": 2,
+      "layout": {
+        "type": "grid",
+        "columns": 12
+      },
+      "fields": [
+        {
+          "name": "first_name",
+          "label": "First",
+          "type": "text",
+          "order": 1,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "last_name",
+          "label": "Last",
+          "type": "text",
+          "order": 2,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "email",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "jane@example.com",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "phone",
+          "label": "Phone",
+          "type": "phone",
+          "order": 4,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "(555) 000-0000",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "sms_consent",
+          "label": "SMS Consent",
+          "type": "checkbox",
+          "order": 5,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "checkbox_label": "By checking this box, you consent to receive text messages from Healey Insurance Group Services at the mobile number provided regarding your insurance inquiries, quotes, policy updates, and promotional/marketing messages. Consent is not a condition of purchase. Message and data rates may apply. Message frequency varies. Reply HELP for help or STOP to cancel. View our Privacy Policy and Terms of Service",
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "date_of_birth",
+          "label": "Date of Birth",
+          "type": "date",
+          "order": 6,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "gender",
+          "label": "Gender",
+          "type": "select",
+          "order": 7,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "marital_status",
+          "label": "Marital Status",
+          "type": "select",
+          "order": 8,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "marital_statuses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "drivers_license_number",
+          "label": "Drivers License Number",
+          "type": "text",
+          "order": 9,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "drivers_license_state",
+          "label": "Drivers License State",
+          "type": "select",
+          "order": 10,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "sr22_required",
+          "label": "SR-22 Required?",
+          "type": "checkbox",
+          "order": 11,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "education_level",
+          "label": "Education Level",
+          "type": "select",
+          "order": 12,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "education_levels",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "occupation",
+          "label": "Occupation",
+          "type": "text",
+          "order": 13,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "has_co_applicant",
+          "label": "Is there a Co-Applicant?",
+          "type": "radio",
+          "order": 14,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "section_id": "co_applicant_information",
+      "title": "Co-Applicant",
+      "description": "Information about the co-applicant (if applicable).",
+      "order": 3,
+      "conditional_visibility": {
+        "field": "has_co_applicant",
+        "operator": "equals",
+        "value": "yes"
+      },
+      "layout": {
+        "type": "grid",
+        "columns": 12
+      },
+      "fields": [
+        {
+          "name": "co_applicant_first_name",
+          "label": "Co-Insured Name",
+          "type": "text",
+          "order": 1,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "co_applicant_last_name",
+          "label": "",
+          "type": "text",
+          "order": 2,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "co_applicant_date_of_birth",
+          "label": "Co-Insured Date of Birth",
+          "type": "date",
+          "order": 3,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "co_applicant_gender",
+          "label": "Co-Insured Gender",
+          "type": "select",
+          "order": 4,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "co_applicant_drivers_license_number",
+          "label": "Co-Insured Drivers License Number",
+          "type": "text",
+          "order": 5,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "co_applicant_drivers_license_state",
+          "label": "Co-Insured Drivers License State",
+          "type": "select",
+          "order": 6,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "co_applicant_sr22_required",
+          "label": "Co-Insured SR-22 Required?",
+          "type": "checkbox",
+          "order": 7,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "co_applicant_email",
+          "label": "Co-Insured Email",
+          "type": "email",
+          "order": 8,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "co_applicant_phone",
+          "label": "Co-Insured Phone",
+          "type": "phone",
+          "order": 9,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "(555) 000-0000",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "co_applicant_education_level",
+          "label": "Co-Insured Education Level",
+          "type": "select",
+          "order": 10,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "education_levels",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "co_applicant_occupation",
+          "label": "Co-Insured Occupation",
+          "type": "text",
+          "order": 11,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "section_id": "address_information",
+      "title": "Current Address",
+      "description": "Provide your mailing and current addresses.",
+      "order": 4,
+      "layout": {
+        "type": "grid",
+        "columns": 12
+      },
+      "fields": [
+        {
+          "name": "mailing_address_label",
+          "label": "Mailing Address",
+          "type": "display_text",
+          "group": "mailing",
+          "order": 1,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "text_style": "bold"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "mailing_street_address",
+          "label": "Street Address",
+          "type": "text",
+          "group": "mailing",
+          "order": 2,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "placeholder": "Enter a location",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "mailing_address_line_2",
+          "label": "Address Line 2",
+          "type": "text",
+          "group": "mailing",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "mailing_city",
+          "label": "City",
+          "type": "text",
+          "group": "mailing",
+          "order": 4,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "mailing_state",
+          "label": "State",
+          "type": "select",
+          "group": "mailing",
+          "order": 5,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select State -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "mailing_zip_code",
+          "label": "ZIP Code",
+          "type": "text",
+          "group": "mailing",
+          "order": 6,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "12345",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "current_address_label",
+          "label": "Current Address",
+          "type": "display_text",
+          "group": "current",
+          "order": 7,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "text_style": "bold"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "same_as_mailing_address",
+          "label": "Same as Mailing Address",
+          "type": "checkbox",
+          "group": "current",
+          "order": 8,
+          "checked": true,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "current_street_address",
+          "label": "Street Address",
+          "type": "text",
+          "group": "current",
+          "order": 9,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "placeholder": "Enter a location",
+          "ui": {
+            "input_size": "full"
+          },
+          "conditional_visibility": {
+            "field": "same_as_mailing_address",
+            "operator": "is_not_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "current_address_line_2",
+          "label": "Address Line 2",
+          "type": "text",
+          "group": "current",
+          "order": 10,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "conditional_visibility": {
+            "field": "same_as_mailing_address",
+            "operator": "is_not_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "current_city",
+          "label": "City",
+          "type": "text",
+          "group": "current",
+          "order": 11,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "conditional_visibility": {
+            "field": "same_as_mailing_address",
+            "operator": "is_not_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "current_state",
+          "label": "State",
+          "type": "select",
+          "group": "current",
+          "order": 12,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select State -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "conditional_visibility": {
+            "field": "same_as_mailing_address",
+            "operator": "is_not_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "current_zip_code",
+          "label": "ZIP Code",
+          "type": "text",
+          "group": "current",
+          "order": 13,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "12345",
+          "ui": {
+            "input_size": "small"
+          },
+          "conditional_visibility": {
+            "field": "same_as_mailing_address",
+            "operator": "is_not_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "section_id": "homeowners_details",
+      "title": "Property Information",
+      "description": null,
+      "order": 5,
+      "conditional_visibility": {
+        "field": "insurance_types",
+        "operator": "contains_option",
+        "value": "homeowners"
+      },
+      "layout": {
+        "type": "grid",
+        "columns": 12
+      },
+      "fields": [
+        {
+          "name": "property_street_address",
+          "label": "Property Address",
+          "type": "text",
+          "order": 1,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "placeholder": "Enter a location",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "property_address_line_2",
+          "label": "Address Line 2",
+          "type": "text",
+          "order": 2,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_city",
+          "label": "City",
+          "type": "text",
+          "order": 3,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_state",
+          "label": "State",
+          "type": "select",
+          "order": 3,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select State -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_zip_code",
+          "label": "ZIP Code",
+          "type": "text",
+          "order": 4,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "12345",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "home_type",
+          "label": "Type of Home",
+          "type": "select",
+          "order": 6,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Single Family",
+              "value": "single_family"
+            },
+            {
+              "label": "Condo",
+              "value": "condo"
+            },
+            {
+              "label": "Manufactured",
+              "value": "manufactured"
+            },
+            {
+              "label": "Townhome",
+              "value": "townhome"
+            },
+            {
+              "label": "Duplex",
+              "value": "duplex"
+            },
+            {
+              "label": "Triplex",
+              "value": "triplex"
+            },
+            {
+              "label": "4-Plex",
+              "value": "fourplex"
+            },
+            {
+              "label": "Apartment",
+              "value": "apartment"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "home_primary_use",
+          "label": "Primary Use For Home",
+          "type": "select",
+          "order": 7,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Primary Home",
+              "value": "primary"
+            },
+            {
+              "label": "Secondary Home",
+              "value": "secondary"
+            },
+            {
+              "label": "Vacation Rental",
+              "value": "vacation_rental"
+            },
+            {
+              "label": "Short-Term Rental (Less than 6 months)",
+              "value": "short_term_rental"
+            },
+            {
+              "label": "Long-Term Rental (Greater than 6 months)",
+              "value": "long_term_rental"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "home_primary_occupancy",
+          "label": "Primary Occupancy",
+          "type": "select",
+          "order": 8,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Owner Occupied",
+              "value": "owner_occupied"
+            },
+            {
+              "label": "Tenant Occupied",
+              "value": "tenant_occupied"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "vacancy_duration",
+          "label": "How long will the property be vacant at one time?",
+          "type": "text",
+          "order": 9,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "home_primary_use",
+            "operator": "equals",
+            "value": "secondary"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "has_caretaker",
+          "label": "Is there a caretaker?",
+          "type": "radio",
+          "order": 10,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "home_primary_use",
+            "operator": "equals",
+            "value": "secondary"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "rental_weeks_per_year",
+          "label": "How many weeks per year will the property be rented?",
+          "type": "number",
+          "order": 11,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "home_primary_use",
+            "operator": "equals",
+            "value": "vacation_rental"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "property_titled_other_name",
+          "label": "Is property titled in a name Other Than your personal name(s)?",
+          "help_text": "Example: Trust, LLC, Corporation, Partnership, etc.",
+          "type": "radio",
+          "order": 12,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "property_title_name",
+          "label": "Name on Title of Property",
+          "type": "text",
+          "order": 13,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_titled_other_name",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "is_new_purchase",
+          "label": "Is this a New Purchase?",
+          "type": "radio",
+          "order": 13,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "purchase_date",
+          "label": "Purchase Date",
+          "type": "date",
+          "order": 14,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "is_new_purchase",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "purchase_price",
+          "label": "Purchase Price",
+          "type": "currency",
+          "order": 15,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "is_new_purchase",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "will_have_mortgage",
+          "label": "Will there be a Mortgage?",
+          "type": "radio",
+          "order": 16,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "additional_coverage_interests",
+          "label": "Additional Property Coverage Interests",
+          "type": "checkbox_group",
+          "order": 17,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "None",
+              "value": "none"
+            },
+            {
+              "label": "Flood",
+              "value": "flood"
+            },
+            {
+              "label": "Earthquake",
+              "value": "earthquake"
+            },
+            {
+              "label": "Hurricane",
+              "value": "hurricane"
+            }
+          ],
+          "ui": {
+            "option_layout": "grid",
+            "option_label_position": "right",
+            "variant": "card"
+          },
+          "validation": {
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "section_id": "additional_property_details",
+      "title": "Additional Property Details",
+      "description": null,
+      "order": 6,
+      "conditional_visibility": {
+        "field": "insurance_types",
+        "operator": "contains_option",
+        "value": "homeowners"
+      },
+      "layout": {
+        "type": "grid",
+        "columns": 12
+      },
+      "fields": [
+        {
+          "name": "num_full_baths",
+          "label": "# of Fulls Baths",
+          "type": "number",
+          "order": 1,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "num_three_quarter_baths",
+          "label": "# of 3/4 Baths (Shower Only)",
+          "type": "number",
+          "order": 1,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "num_half_baths",
+          "label": "# of Half Baths",
+          "type": "number",
+          "order": 1,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "has_basement",
+          "label": "Does the home have a basement?",
+          "type": "radio",
+          "order": 2,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "basement_type",
+          "label": "Basement Type",
+          "type": "select",
+          "order": 2,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_basement",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "basement_finished_pct",
+          "label": "What % of basement is finished?",
+          "type": "text",
+          "order": 2,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_basement",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "has_home_updates",
+          "label": "Has there been any updates to the Roof, Plumbing, Heating or Electrical at your home?",
+          "type": "radio",
+          "order": 3,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "roof_update_year",
+          "label": "Roof Update Year",
+          "type": "number",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "roof_update_type",
+          "label": "Roof Update Type",
+          "type": "select",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "plumbing_update_year",
+          "label": "Plumbing Update Year",
+          "type": "number",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "plumbing_update_type",
+          "label": "Plumbing Update Type",
+          "type": "select",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "heating_update_year",
+          "label": "Heating Update Year",
+          "type": "number",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "heating_update_type",
+          "label": "Heating Update Type",
+          "type": "select",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "electrical_update_year",
+          "label": "Electrical Update Year",
+          "type": "number",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "electrical_update_type",
+          "label": "Electrical Update Type",
+          "type": "select",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "security_system",
+          "label": "Does your home have a security system?",
+          "type": "select",
+          "order": 4,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "None",
+              "value": "none"
+            },
+            {
+              "label": "Local Security System (Alarm Sound)",
+              "value": "local_alarm"
+            },
+            {
+              "label": "Central Station Monitoring System",
+              "value": "central_station"
+            },
+            {
+              "label": "Smart Security System (Ring doorbell, or similar)",
+              "value": "smart_system"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "home_discounts",
+          "label": "Does your home qualify for discounts?",
+          "help_text": "Check all that apply",
+          "type": "checkbox_group",
+          "order": 5,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Deadbolts",
+              "value": "deadbolts"
+            },
+            {
+              "label": "Fire Extinguisher",
+              "value": "fire_extinguisher"
+            },
+            {
+              "label": "Smoke Alarm",
+              "value": "smoke_alarm"
+            },
+            {
+              "label": "Monitored Smoke Alarm",
+              "value": "monitored_smoke_alarm"
+            },
+            {
+              "label": "Gated Community",
+              "value": "gated_community"
+            },
+            {
+              "label": "Indoor Sprinklers",
+              "value": "indoor_sprinklers"
+            },
+            {
+              "label": "Electric Backup Generator",
+              "value": "electric_backup_generator"
+            },
+            {
+              "label": "Water Leak Detector",
+              "value": "water_leak_detector"
+            },
+            {
+              "label": "Water Flow Alarm",
+              "value": "water_flow_alarm"
+            },
+            {
+              "label": "Automatic Water Shutoff",
+              "value": "automatic_water_shutoff"
+            },
+            {
+              "label": "Patrolled",
+              "value": "patrolled"
+            },
+            {
+              "label": "Military",
+              "value": "military"
+            },
+            {
+              "label": "Condo: 24 Hr Security",
+              "value": "condo_24hr_security"
+            },
+            {
+              "label": "Condo: Secured Building",
+              "value": "condo_secured_building"
+            }
+          ],
+          "ui": {
+            "option_layout": "grid",
+            "option_label_position": "right",
+            "variant": "card"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "multiple_dwellings",
+          "label": "Are there multiple dwellings on this property?",
+          "type": "radio",
+          "order": 6,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "have_dogs",
+          "label": "Have Dogs?",
+          "type": "radio",
+          "order": 7,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "dog_breeds",
+          "label": "Breed(s) of Dog(s)",
+          "type": "text",
+          "order": 8,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "have_dogs",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "dog_bite_history",
+          "label": "Any dogs have bite history?",
+          "type": "radio",
+          "order": 8,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "have_dogs",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "has_pool",
+          "label": "Has Pool?",
+          "type": "radio",
+          "order": 9,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "pool_type",
+          "label": "Pool Type",
+          "type": "radio",
+          "order": 10,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "In Ground",
+              "value": "in_ground"
+            },
+            {
+              "label": "Above Ground",
+              "value": "above_ground"
+            }
+          ],
+          "conditional_visibility": {
+            "field": "has_pool",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "pool_fenced",
+          "label": "Is Pool Fenced?",
+          "type": "radio",
+          "order": 10,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "has_pool",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+      "section_id": "additional_drivers",
+      "title": "Additional Drivers",
+      "description": "Add information for additional drivers in your household.",
+      "order": 7,
+      "conditional_visibility": {
+        "field": "insurance_types",
+        "operator": "contains_option",
+        "value": "auto"
+      },
+      "layout": {
+        "type": "grid",
+        "columns": 12
+      },
+      "fields": [
+        {
+          "name": "has_additional_drivers",
+          "label": "Are there additional drivers in your household?",
+          "type": "radio",
+          "order": 1,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_1_name_first",
+          "label": "1. Driver Name",
+          "type": "text",
+          "order": 2,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "conditional_visibility": {
+            "field": "has_additional_drivers",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_1_name_last",
+          "label": "",
+          "type": "text",
+          "order": 2,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "conditional_visibility": {
+            "field": "has_additional_drivers",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_1_date_of_birth",
+          "label": "1. Driver Date of Birth",
+          "type": "date",
+          "order": 3,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_additional_drivers",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_1_gender",
+          "label": "1. Gender",
+          "type": "select",
+          "order": 3,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "has_additional_drivers",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_1_relationship",
+          "label": "1. Relationship to Insured",
+          "type": "select",
+          "order": 3,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "relationships",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "has_additional_drivers",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_1_license_number",
+          "label": "1. Driver License #",
+          "type": "text",
+          "order": 4,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_additional_drivers",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_1_license_state",
+          "label": "1. Drivers License State",
+          "type": "select",
+          "order": 4,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "has_additional_drivers",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_1_sr22_required",
+          "label": "1. SR-22 Required?",
+          "type": "checkbox",
+          "order": 5,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_additional_drivers",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_1_add_another",
+          "label": "Add Another Driver",
+          "type": "checkbox",
+          "order": 6,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "has_additional_drivers",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_2_name_first",
+          "label": "2. Driver Name",
+          "type": "text",
+          "order": 7,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "conditional_visibility": {
+            "field": "driver_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_2_name_last",
+          "label": "",
+          "type": "text",
+          "order": 7,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "conditional_visibility": {
+            "field": "driver_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_2_date_of_birth",
+          "label": "2. Driver Date of Birth",
+          "type": "date",
+          "order": 8,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_2_gender",
+          "label": "2. Gender",
+          "type": "select",
+          "order": 8,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_2_relationship",
+          "label": "2. Relationship to Insured",
+          "type": "select",
+          "order": 8,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "relationships",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_2_license_number",
+          "label": "2. Driver License #",
+          "type": "text",
+          "order": 9,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_2_license_state",
+          "label": "2. Drivers License State",
+          "type": "select",
+          "order": 9,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_2_sr22_required",
+          "label": "2. SR-22 Required?",
+          "type": "checkbox",
+          "order": 10,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_2_add_another",
+          "label": "Add Another Driver",
+          "type": "checkbox",
+          "order": 11,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_3_name_first",
+          "label": "3. Driver Name",
+          "type": "text",
+          "order": 12,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "conditional_visibility": {
+            "field": "driver_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_3_name_last",
+          "label": "",
+          "type": "text",
+          "order": 12,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "conditional_visibility": {
+            "field": "driver_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_3_date_of_birth",
+          "label": "3. Driver Date of Birth",
+          "type": "date",
+          "order": 13,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_3_gender",
+          "label": "3. Gender",
+          "type": "select",
+          "order": 13,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_3_relationship",
+          "label": "3. Relationship to Insured",
+          "type": "select",
+          "order": 13,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "relationships",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_3_license_number",
+          "label": "3. Driver License #",
+          "type": "text",
+          "order": 14,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_3_license_state",
+          "label": "3. Drivers License State",
+          "type": "select",
+          "order": 14,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_3_sr22_required",
+          "label": "3. SR-22 Required?",
+          "type": "checkbox",
+          "order": 15,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_3_add_another",
+          "label": "Add Another Driver",
+          "type": "checkbox",
+          "order": 16,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_4_name_first",
+          "label": "4. Driver Name",
+          "type": "text",
+          "order": 17,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "conditional_visibility": {
+            "field": "driver_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_4_name_last",
+          "label": "",
+          "type": "text",
+          "order": 17,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "conditional_visibility": {
+            "field": "driver_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_4_date_of_birth",
+          "label": "4. Driver Date of Birth",
+          "type": "date",
+          "order": 18,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_4_gender",
+          "label": "4. Gender",
+          "type": "select",
+          "order": 18,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_4_relationship",
+          "label": "4. Relationship to Insured",
+          "type": "select",
+          "order": 18,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "relationships",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_4_license_number",
+          "label": "4. Driver License #",
+          "type": "text",
+          "order": 19,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_4_license_state",
+          "label": "4. Drivers License State",
+          "type": "select",
+          "order": 19,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_4_sr22_required",
+          "label": "4. SR-22 Required?",
+          "type": "checkbox",
+          "order": 20,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_4_add_another",
+          "label": "Add Another Driver",
+          "type": "checkbox",
+          "order": 21,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_5_name_first",
+          "label": "5. Driver Name",
+          "type": "text",
+          "order": 22,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "conditional_visibility": {
+            "field": "driver_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_5_name_last",
+          "label": "",
+          "type": "text",
+          "order": 22,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "conditional_visibility": {
+            "field": "driver_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_5_date_of_birth",
+          "label": "5. Driver Date of Birth",
+          "type": "date",
+          "order": 23,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_5_gender",
+          "label": "5. Gender",
+          "type": "select",
+          "order": 23,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_5_relationship",
+          "label": "5. Relationship to Insured",
+          "type": "select",
+          "order": 23,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "relationships",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_5_license_number",
+          "label": "5. Driver License #",
+          "type": "text",
+          "order": 24,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_5_license_state",
+          "label": "5. Drivers License State",
+          "type": "select",
+          "order": 24,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_5_sr22_required",
+          "label": "5. SR-22 Required?",
+          "type": "checkbox",
+          "order": 25,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_5_add_another",
+          "label": "Add Another Driver",
+          "type": "checkbox",
+          "order": 26,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_6_name_first",
+          "label": "6. Driver Name",
+          "type": "text",
+          "order": 27,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "conditional_visibility": {
+            "field": "driver_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_6_name_last",
+          "label": "",
+          "type": "text",
+          "order": 27,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "conditional_visibility": {
+            "field": "driver_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_6_date_of_birth",
+          "label": "6. Driver Date of Birth",
+          "type": "date",
+          "order": 28,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_6_gender",
+          "label": "6. Gender",
+          "type": "select",
+          "order": 28,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_6_relationship",
+          "label": "6. Relationship to Insured",
+          "type": "select",
+          "order": 28,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "relationships",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_6_license_number",
+          "label": "6. Driver License #",
+          "type": "text",
+          "order": 29,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_6_license_state",
+          "label": "6. Drivers License State",
+          "type": "select",
+          "order": 29,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_6_sr22_required",
+          "label": "6. SR-22 Required?",
+          "type": "checkbox",
+          "order": 30,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_6_add_another",
+          "label": "Add Another Driver",
+          "type": "checkbox",
+          "order": 31,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_7_name_first",
+          "label": "7. Driver Name",
+          "type": "text",
+          "order": 32,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "conditional_visibility": {
+            "field": "driver_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_7_name_last",
+          "label": "",
+          "type": "text",
+          "order": 32,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "conditional_visibility": {
+            "field": "driver_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_7_date_of_birth",
+          "label": "7. Driver Date of Birth",
+          "type": "date",
+          "order": 33,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_7_gender",
+          "label": "7. Gender",
+          "type": "select",
+          "order": 33,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_7_relationship",
+          "label": "7. Relationship to Insured",
+          "type": "select",
+          "order": 33,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "relationships",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_7_license_number",
+          "label": "7. Driver License #",
+          "type": "text",
+          "order": 34,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_7_license_state",
+          "label": "7. Drivers License State",
+          "type": "select",
+          "order": 34,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_7_sr22_required",
+          "label": "7. SR-22 Required?",
+          "type": "checkbox",
+          "order": 35,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_7_add_another",
+          "label": "Add Another Driver",
+          "type": "checkbox",
+          "order": 36,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_8_name_first",
+          "label": "8. Driver Name",
+          "type": "text",
+          "order": 37,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "conditional_visibility": {
+            "field": "driver_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_8_name_last",
+          "label": "",
+          "type": "text",
+          "order": 37,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "conditional_visibility": {
+            "field": "driver_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_8_date_of_birth",
+          "label": "8. Driver Date of Birth",
+          "type": "date",
+          "order": 38,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_8_gender",
+          "label": "8. Gender",
+          "type": "select",
+          "order": 38,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_8_relationship",
+          "label": "8. Relationship to Insured",
+          "type": "select",
+          "order": 38,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "relationships",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_8_license_number",
+          "label": "8. Driver License #",
+          "type": "text",
+          "order": 39,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_8_license_state",
+          "label": "8. Drivers License State",
+          "type": "select",
+          "order": 39,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_8_sr22_required",
+          "label": "8. SR-22 Required?",
+          "type": "checkbox",
+          "order": 40,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_8_add_another",
+          "label": "Add Another Driver",
+          "type": "checkbox",
+          "order": 41,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_9_name_first",
+          "label": "9. Driver Name",
+          "type": "text",
+          "order": 42,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "conditional_visibility": {
+            "field": "driver_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_9_name_last",
+          "label": "",
+          "type": "text",
+          "order": 42,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "conditional_visibility": {
+            "field": "driver_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_9_date_of_birth",
+          "label": "9. Driver Date of Birth",
+          "type": "date",
+          "order": 43,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_9_gender",
+          "label": "9. Gender",
+          "type": "select",
+          "order": 43,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_9_relationship",
+          "label": "9. Relationship to Insured",
+          "type": "select",
+          "order": 43,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "relationships",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_9_license_number",
+          "label": "9. Driver License #",
+          "type": "text",
+          "order": 44,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_9_license_state",
+          "label": "9. Drivers License State",
+          "type": "select",
+          "order": 44,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_9_sr22_required",
+          "label": "9. SR-22 Required?",
+          "type": "checkbox",
+          "order": 45,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_9_add_another",
+          "label": "Add Another Driver",
+          "type": "checkbox",
+          "order": 46,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_10_name_first",
+          "label": "10. Driver Name",
+          "type": "text",
+          "order": 47,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "First",
+          "conditional_visibility": {
+            "field": "driver_9_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_10_name_last",
+          "label": "",
+          "type": "text",
+          "order": 47,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Last",
+          "conditional_visibility": {
+            "field": "driver_9_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_10_date_of_birth",
+          "label": "10. Driver Date of Birth",
+          "type": "date",
+          "order": 48,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_9_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_10_gender",
+          "label": "10. Gender",
+          "type": "select",
+          "order": 48,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "gender_options",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_9_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_10_relationship",
+          "label": "10. Relationship to Insured",
+          "type": "select",
+          "order": 48,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "relationships",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_9_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_10_license_number",
+          "label": "10. Driver License #",
+          "type": "text",
+          "order": 49,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_9_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_10_license_state",
+          "label": "10. Drivers License State",
+          "type": "select",
+          "order": 49,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select -",
+          "conditional_visibility": {
+            "field": "driver_9_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "driver_10_sr22_required",
+          "label": "10. SR-22 Required?",
+          "type": "checkbox",
+          "order": 50,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "driver_9_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "section_id": "vehicles",
+      "title": "Vehicles",
+      "description": "Provide information about your vehicle(s).",
+      "order": 8,
+      "conditional_visibility": {
+        "field": "insurance_types",
+        "operator": "contains_option",
+        "value": "auto"
+      },
+      "layout": {
+        "type": "grid",
+        "columns": 12
+      },
+      "fields": [
+        {
+          "name": "vehicle_1_vin",
+          "label": "1. VIN",
+          "type": "text",
+          "order": 1,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_1_year",
+          "label": "1. Year",
+          "type": "number",
+          "order": 1,
+          "layout": {
+            "desktop": 2,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "2024",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "vehicle_1_make",
+          "label": "1. Make",
+          "type": "text",
+          "order": 1,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Toyota",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "vehicle_1_model",
+          "label": "1. Model",
+          "type": "text",
+          "order": 1,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "Camry",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "vehicle_1_annual_miles",
+          "label": "1. Estimated Annual Miles",
+          "type": "number",
+          "order": 2,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "12000",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_1_primary_use",
+          "label": "1. Primary Use",
+          "type": "select",
+          "order": 2,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "vehicle_uses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_1_ownership",
+          "label": "1. Ownership",
+          "type": "radio",
+          "order": 2,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "ownership_types",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_1_financed",
+          "label": "1. Vehicle Financed",
+          "type": "radio",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_1_comprehensive_deductible",
+          "label": "1. Preferred COMPREHENSIVE Deductible",
+          "type": "select",
+          "order": 3,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "vehicle_1_collision_deductible",
+          "label": "1. Preferred COLLISION Deductible",
+          "type": "select",
+          "order": 4,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "vehicle_1_primary_driver",
+          "label": "1. Name of Primary Driver",
+          "type": "text",
+          "order": 5,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_1_add_another",
+          "label": "Add a Vehicle",
+          "type": "checkbox",
+          "order": 6,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_vin",
+          "label": "2. VIN",
+          "type": "text",
+          "order": 7,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_year",
+          "label": "2. Year",
+          "type": "number",
+          "order": 7,
+          "layout": {
+            "desktop": 2,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "2024",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_make",
+          "label": "2. Make",
+          "type": "text",
+          "order": 7,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Toyota",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_model",
+          "label": "2. Model",
+          "type": "text",
+          "order": 7,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Camry",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_annual_miles",
+          "label": "2. Estimated Annual Miles",
+          "type": "number",
+          "order": 8,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "12000",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_primary_use",
+          "label": "2. Primary Use",
+          "type": "select",
+          "order": 8,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "vehicle_uses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_ownership",
+          "label": "2. Ownership",
+          "type": "radio",
+          "order": 8,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "ownership_types",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_financed",
+          "label": "2. Vehicle Financed",
+          "type": "radio",
+          "order": 9,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_comprehensive_deductible",
+          "label": "2. Preferred COMPREHENSIVE Deductible",
+          "type": "select",
+          "order": 9,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_collision_deductible",
+          "label": "2. Preferred COLLISION Deductible",
+          "type": "select",
+          "order": 10,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_primary_driver",
+          "label": "2. Name of Primary Driver",
+          "type": "text",
+          "order": 11,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_2_add_another",
+          "label": "Add a Vehicle",
+          "type": "checkbox",
+          "order": 12,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_1_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_vin",
+          "label": "3. VIN",
+          "type": "text",
+          "order": 13,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_year",
+          "label": "3. Year",
+          "type": "number",
+          "order": 13,
+          "layout": {
+            "desktop": 2,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "2024",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_make",
+          "label": "3. Make",
+          "type": "text",
+          "order": 13,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Toyota",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_model",
+          "label": "3. Model",
+          "type": "text",
+          "order": 13,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Camry",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_annual_miles",
+          "label": "3. Estimated Annual Miles",
+          "type": "number",
+          "order": 14,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "12000",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_primary_use",
+          "label": "3. Primary Use",
+          "type": "select",
+          "order": 14,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "vehicle_uses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_ownership",
+          "label": "3. Ownership",
+          "type": "radio",
+          "order": 14,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "ownership_types",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_financed",
+          "label": "3. Vehicle Financed",
+          "type": "radio",
+          "order": 15,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_comprehensive_deductible",
+          "label": "3. Preferred COMPREHENSIVE Deductible",
+          "type": "select",
+          "order": 15,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_collision_deductible",
+          "label": "3. Preferred COLLISION Deductible",
+          "type": "select",
+          "order": 16,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_primary_driver",
+          "label": "3. Name of Primary Driver",
+          "type": "text",
+          "order": 17,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_3_add_another",
+          "label": "Add a Vehicle",
+          "type": "checkbox",
+          "order": 18,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_2_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_vin",
+          "label": "4. VIN",
+          "type": "text",
+          "order": 19,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_year",
+          "label": "4. Year",
+          "type": "number",
+          "order": 19,
+          "layout": {
+            "desktop": 2,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "2024",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_make",
+          "label": "4. Make",
+          "type": "text",
+          "order": 19,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Toyota",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_model",
+          "label": "4. Model",
+          "type": "text",
+          "order": 19,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Camry",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_annual_miles",
+          "label": "4. Estimated Annual Miles",
+          "type": "number",
+          "order": 20,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "12000",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_primary_use",
+          "label": "4. Primary Use",
+          "type": "select",
+          "order": 20,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "vehicle_uses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_ownership",
+          "label": "4. Ownership",
+          "type": "radio",
+          "order": 20,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "ownership_types",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_financed",
+          "label": "4. Vehicle Financed",
+          "type": "radio",
+          "order": 21,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_comprehensive_deductible",
+          "label": "4. Preferred COMPREHENSIVE Deductible",
+          "type": "select",
+          "order": 21,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_collision_deductible",
+          "label": "4. Preferred COLLISION Deductible",
+          "type": "select",
+          "order": 22,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_primary_driver",
+          "label": "4. Name of Primary Driver",
+          "type": "text",
+          "order": 23,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_4_add_another",
+          "label": "Add a Vehicle",
+          "type": "checkbox",
+          "order": 24,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_3_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_vin",
+          "label": "5. VIN",
+          "type": "text",
+          "order": 25,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_year",
+          "label": "5. Year",
+          "type": "number",
+          "order": 25,
+          "layout": {
+            "desktop": 2,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "2024",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_make",
+          "label": "5. Make",
+          "type": "text",
+          "order": 25,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Toyota",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_model",
+          "label": "5. Model",
+          "type": "text",
+          "order": 25,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Camry",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_annual_miles",
+          "label": "5. Estimated Annual Miles",
+          "type": "number",
+          "order": 26,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "12000",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_primary_use",
+          "label": "5. Primary Use",
+          "type": "select",
+          "order": 26,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "vehicle_uses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_ownership",
+          "label": "5. Ownership",
+          "type": "radio",
+          "order": 26,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "ownership_types",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_financed",
+          "label": "5. Vehicle Financed",
+          "type": "radio",
+          "order": 27,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_comprehensive_deductible",
+          "label": "5. Preferred COMPREHENSIVE Deductible",
+          "type": "select",
+          "order": 27,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_collision_deductible",
+          "label": "5. Preferred COLLISION Deductible",
+          "type": "select",
+          "order": 28,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_primary_driver",
+          "label": "5. Name of Primary Driver",
+          "type": "text",
+          "order": 29,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_5_add_another",
+          "label": "Add a Vehicle",
+          "type": "checkbox",
+          "order": 30,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_4_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_vin",
+          "label": "6. VIN",
+          "type": "text",
+          "order": 31,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_year",
+          "label": "6. Year",
+          "type": "number",
+          "order": 31,
+          "layout": {
+            "desktop": 2,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "2024",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_make",
+          "label": "6. Make",
+          "type": "text",
+          "order": 31,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Toyota",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_model",
+          "label": "6. Model",
+          "type": "text",
+          "order": 31,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Camry",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_annual_miles",
+          "label": "6. Estimated Annual Miles",
+          "type": "number",
+          "order": 32,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "12000",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_primary_use",
+          "label": "6. Primary Use",
+          "type": "select",
+          "order": 32,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "vehicle_uses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_ownership",
+          "label": "6. Ownership",
+          "type": "radio",
+          "order": 32,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "ownership_types",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_financed",
+          "label": "6. Vehicle Financed",
+          "type": "radio",
+          "order": 33,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_comprehensive_deductible",
+          "label": "6. Preferred COMPREHENSIVE Deductible",
+          "type": "select",
+          "order": 33,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_collision_deductible",
+          "label": "6. Preferred COLLISION Deductible",
+          "type": "select",
+          "order": 34,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_primary_driver",
+          "label": "6. Name of Primary Driver",
+          "type": "text",
+          "order": 35,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_6_add_another",
+          "label": "Add a Vehicle",
+          "type": "checkbox",
+          "order": 36,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_5_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_vin",
+          "label": "7. VIN",
+          "type": "text",
+          "order": 37,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_year",
+          "label": "7. Year",
+          "type": "number",
+          "order": 37,
+          "layout": {
+            "desktop": 2,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "2024",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_make",
+          "label": "7. Make",
+          "type": "text",
+          "order": 37,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Toyota",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_model",
+          "label": "7. Model",
+          "type": "text",
+          "order": 37,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Camry",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_annual_miles",
+          "label": "7. Estimated Annual Miles",
+          "type": "number",
+          "order": 38,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "12000",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_primary_use",
+          "label": "7. Primary Use",
+          "type": "select",
+          "order": 38,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "vehicle_uses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_ownership",
+          "label": "7. Ownership",
+          "type": "radio",
+          "order": 38,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "ownership_types",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_financed",
+          "label": "7. Vehicle Financed",
+          "type": "radio",
+          "order": 39,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_comprehensive_deductible",
+          "label": "7. Preferred COMPREHENSIVE Deductible",
+          "type": "select",
+          "order": 39,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_collision_deductible",
+          "label": "7. Preferred COLLISION Deductible",
+          "type": "select",
+          "order": 40,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_primary_driver",
+          "label": "7. Name of Primary Driver",
+          "type": "text",
+          "order": 41,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_7_add_another",
+          "label": "Add a Vehicle",
+          "type": "checkbox",
+          "order": 42,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_6_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_vin",
+          "label": "8. VIN",
+          "type": "text",
+          "order": 43,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_year",
+          "label": "8. Year",
+          "type": "number",
+          "order": 43,
+          "layout": {
+            "desktop": 2,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "2024",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_make",
+          "label": "8. Make",
+          "type": "text",
+          "order": 43,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Toyota",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_model",
+          "label": "8. Model",
+          "type": "text",
+          "order": 43,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Camry",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_annual_miles",
+          "label": "8. Estimated Annual Miles",
+          "type": "number",
+          "order": 44,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "12000",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_primary_use",
+          "label": "8. Primary Use",
+          "type": "select",
+          "order": 44,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "vehicle_uses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_ownership",
+          "label": "8. Ownership",
+          "type": "radio",
+          "order": 44,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "ownership_types",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_financed",
+          "label": "8. Vehicle Financed",
+          "type": "radio",
+          "order": 45,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_comprehensive_deductible",
+          "label": "8. Preferred COMPREHENSIVE Deductible",
+          "type": "select",
+          "order": 45,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_collision_deductible",
+          "label": "8. Preferred COLLISION Deductible",
+          "type": "select",
+          "order": 46,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_primary_driver",
+          "label": "8. Name of Primary Driver",
+          "type": "text",
+          "order": 47,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_8_add_another",
+          "label": "Add a Vehicle",
+          "type": "checkbox",
+          "order": 48,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_7_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_vin",
+          "label": "9. VIN",
+          "type": "text",
+          "order": 49,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_year",
+          "label": "9. Year",
+          "type": "number",
+          "order": 49,
+          "layout": {
+            "desktop": 2,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "2024",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_make",
+          "label": "9. Make",
+          "type": "text",
+          "order": 49,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Toyota",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_model",
+          "label": "9. Model",
+          "type": "text",
+          "order": 49,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Camry",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_annual_miles",
+          "label": "9. Estimated Annual Miles",
+          "type": "number",
+          "order": 50,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "12000",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_primary_use",
+          "label": "9. Primary Use",
+          "type": "select",
+          "order": 50,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "vehicle_uses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_ownership",
+          "label": "9. Ownership",
+          "type": "radio",
+          "order": 50,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "ownership_types",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_financed",
+          "label": "9. Vehicle Financed",
+          "type": "radio",
+          "order": 51,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_comprehensive_deductible",
+          "label": "9. Preferred COMPREHENSIVE Deductible",
+          "type": "select",
+          "order": 51,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_collision_deductible",
+          "label": "9. Preferred COLLISION Deductible",
+          "type": "select",
+          "order": 52,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_primary_driver",
+          "label": "9. Name of Primary Driver",
+          "type": "text",
+          "order": 53,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_9_add_another",
+          "label": "Add a Vehicle",
+          "type": "checkbox",
+          "order": 54,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_8_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_vin",
+          "label": "10. VIN",
+          "type": "text",
+          "order": 55,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_year",
+          "label": "10. Year",
+          "type": "number",
+          "order": 55,
+          "layout": {
+            "desktop": 2,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "2024",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_make",
+          "label": "10. Make",
+          "type": "text",
+          "order": 55,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Toyota",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_model",
+          "label": "10. Model",
+          "type": "text",
+          "order": 55,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "Camry",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_annual_miles",
+          "label": "10. Estimated Annual Miles",
+          "type": "number",
+          "order": 56,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "placeholder": "12000",
+          "ui": {
+            "input_size": "small"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_primary_use",
+          "label": "10. Primary Use",
+          "type": "select",
+          "order": 56,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "vehicle_uses",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_ownership",
+          "label": "10. Ownership",
+          "type": "radio",
+          "order": 56,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "ownership_types",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_financed",
+          "label": "10. Vehicle Financed",
+          "type": "radio",
+          "order": 57,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_comprehensive_deductible",
+          "label": "10. Preferred COMPREHENSIVE Deductible",
+          "type": "select",
+          "order": 57,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_collision_deductible",
+          "label": "10. Preferred COLLISION Deductible",
+          "type": "select",
+          "order": 58,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "options_source": "deductible_amounts",
+          "placeholder": "- Select -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "vehicle_10_primary_driver",
+          "label": "10. Name of Primary Driver",
+          "type": "text",
+          "order": 59,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "vehicle_9_add_another",
+            "operator": "is_checked"
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        }
+      ]
+    }
+  ]
+}
