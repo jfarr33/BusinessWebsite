@@ -336,14 +336,6 @@
       var submitBtn = form.querySelector('[type="submit"]');
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting…'; }
 
-      // If the endpoint is set to '#', treat it as disabled and skip network submission.
-      if (String(endpoint).trim() === '#') {
-        console.log('[FormEngine] Submission skipped: endpoint is "#"');
-        showFormMessage(form, 'Submission is disabled.', 'info');
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit'; }
-        return;
-      }
-
       fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -486,6 +478,30 @@
       }
     });
     form.addEventListener('input',  function () { updateConditionals(form); });
+
+    // "Same as mailing address" copy-down for property_1
+    form.addEventListener('change', function (e) {
+      if (e.target && e.target.name === 'property_1_same_as_mailing') {
+        if (e.target.checked) {
+          var fieldMap = {
+            'property_1_street_address': 'mailing_street_address',
+            'property_1_address_line_2': 'mailing_address_line_2',
+            'property_1_city':           'mailing_city',
+            'property_1_state':          'mailing_state',
+            'property_1_zip_code':       'mailing_zip_code'
+          };
+          Object.keys(fieldMap).forEach(function (dest) {
+            var src = form.querySelector('[name="' + fieldMap[dest] + '"]');
+            var dst = form.querySelector('[name="' + dest + '"]');
+            if (src && dst) {
+              dst.value = src.value;
+              dst.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          });
+        }
+        updateConditionals(form);
+      }
+    });
 
     // Evaluate initial state (page load)
     updateConditionals(form);
@@ -839,12 +855,6 @@
 
     // Fire-and-forget background save
     function autoSave(sectionIndex) {
-      // Skip autosave when submit endpoint is set to '#'
-      if (String(form.dataset.submitEndpoint).trim() === '#') {
-        console.log('[FormEngine] Autosave skipped: submit endpoint is "#"');
-        return;
-      }
-
       var payload = {
         session_token:   getToken(),
         form_id:         formId,
@@ -862,37 +872,30 @@
 
     // Explicit save + show confirmation banner
     function saveAndContinueLater() {
-        // Skip explicit Save & Continue Later when submit endpoint is '#'
-        if (String(form.dataset.submitEndpoint).trim() === '#') {
-          console.log('[FormEngine] Save & Continue skipped: submit endpoint is "#"');
-          showFormMessage(form, 'Save & Continue is disabled.', 'info');
-          return;
-        }
-
-        var sectionIdx = form._currentSectionIndex ? form._currentSectionIndex() : 0;
-        var token = getToken();
-        var payload = {
-          session_token:   token,
-          form_id:         formId,
-          form_version:    version,
-          tenant_id:       tenantId,
-          current_section: sectionIdx,
-          form_data:       serializeForm(form),
-        };
-        fetch('/api/save-session', {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify(payload),
+      var sectionIdx = form._currentSectionIndex ? form._currentSectionIndex() : 0;
+      var token = getToken();
+      var payload = {
+        session_token:   token,
+        form_id:         formId,
+        form_version:    version,
+        tenant_id:       tenantId,
+        current_section: sectionIdx,
+        form_data:       serializeForm(form),
+      };
+      fetch('/api/save-session', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data.session_token) {
+            showSaveConfirmation(data.session_token);
+          } else {
+            showSaveError();
+          }
         })
-          .then(function (res) { return res.json(); })
-          .then(function (data) {
-            if (data.session_token) {
-              showSaveConfirmation(data.session_token);
-            } else {
-              showSaveError();
-            }
-          })
-          .catch(showSaveError);
+        .catch(showSaveError);
     }
 
     function showSaveConfirmation(token) {
@@ -1073,6 +1076,13 @@
       if (!continueBtn) return;
       continueBtn.disabled = loading;
       continueBtn.textContent = loading ? 'Parsing…' : 'Continue';
+      var overlay = document.getElementById('importProcessingOverlay');
+      var sub = document.getElementById('importProcessingSub');
+      if (overlay) overlay.classList.toggle('active', loading);
+      if (sub && loading) {
+        var count = selectedFiles.length;
+        sub.textContent = 'Reading ' + count + ' document' + (count !== 1 ? 's' : '') + ' with AI — this may take a moment';
+      }
     }
 
     function showImportStatus(msg, isError) {
@@ -1140,6 +1150,21 @@
       return filled;
     }
 
+    function checkPropertyToggles(propertyCount) {
+      // property_N_add_another must be checked for property N+1 to show.
+      var form = document.getElementById('generated-form');
+      if (!form || propertyCount < 2) return;
+      for (var i = 1; i < propertyCount; i++) {
+        var cb = form.querySelector('[name="property_' + i + '_add_another"]');
+        if (cb && !cb.checked) {
+          cb.checked = true;
+          cb.dispatchEvent(new Event('change', { bubbles: true }));
+          cb.dispatchEvent(new Event('input',  { bubbles: true }));
+        }
+      }
+      updateConditionals(form);
+    }
+
     function checkVehicleToggles(vehicleCount) {
       // vehicle_N_add_another checkbox must be checked for vehicle N+1 to show.
       // If we have 4 vehicles we need vehicle_1, _2, _3 add_another checked.
@@ -1201,15 +1226,6 @@
       var formData = new FormData();
       selectedFiles.forEach(function (f) { formData.append('files', f); });
 
-      // If the form's submit endpoint is '#', treat import/parse as disabled.
-      var form = document.getElementById('generated-form');
-      if (form && String(form.dataset.submitEndpoint).trim() === '#') {
-        console.log('[FormEngine] Import/parse skipped: submit endpoint is "#"');
-        setButtonState(false);
-        showFormMessage(form, 'Import/parse is disabled.', 'info');
-        return;
-      }
-
       fetch('/api/parse-policy', { method: 'POST', body: formData })
         .then(function (res) {
           var contentType = res.headers.get('content-type') || '';
@@ -1230,12 +1246,16 @@
             return;
           }
           var vehicleCount = data.vehicles_found || 0;
+          var propertyCount = data.properties_found || 0;
           var insureds = data.insureds_found || 0;
           var drivers = data.drivers_found || 0;
 
           // Enable parent toggles FIRST so child fields become visible
           // Auto-check vehicle toggles if multiple vehicles
           if (vehicleCount > 1) checkVehicleToggles(vehicleCount);
+
+          // Auto-check property toggles if multiple properties
+          if (propertyCount > 1) checkPropertyToggles(propertyCount);
 
           // Auto-check co-applicant toggle if has_co_applicant was set
           if (insureds > 1) checkCoApplicantToggle(true);
@@ -1255,9 +1275,10 @@
 
           // Show success message
           var summary = [];
-          if (vehicleCount > 0) summary.push(vehicleCount + ' vehicle' + (vehicleCount !== 1 ? 's' : ''));
-          if (insureds > 0)     summary.push(insureds + ' insured' + (insureds !== 1 ? 's' : ''));
-          if (drivers > 0)      summary.push(drivers + ' driver' + (drivers !== 1 ? 's' : ''));
+          if (vehicleCount > 0)  summary.push(vehicleCount + ' vehicle' + (vehicleCount !== 1 ? 's' : ''));
+          if (propertyCount > 0) summary.push(propertyCount + ' propert' + (propertyCount !== 1 ? 'ies' : 'y'));
+          if (insureds > 0)      summary.push(insureds + ' insured' + (insureds !== 1 ? 's' : ''));
+          if (drivers > 0)       summary.push(drivers + ' driver' + (drivers !== 1 ? 's' : ''));
 
           if (summary.length === 0) {
             showImportStatus('No policy information found in the uploaded documents.', false);

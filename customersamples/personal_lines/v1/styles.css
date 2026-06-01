@@ -573,6 +573,7 @@ pre code { background: none; padding: 0; }
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   gap: 20px;
   flex-wrap: wrap;
   padding-bottom: 6px;
@@ -595,6 +596,7 @@ pre code { background: none; padding: 0; }
 
 .form-field:has(.options-horizontal.variant-standard) > .field-options {
   flex: 0 0 auto;
+  margin-left: 0;
 }
 
 /* Individual card boxes around each Yes/No option */
@@ -1316,6 +1318,30 @@ pre code { background: none; padding: 0; }
   font-weight: 500;
 }
 
+.property-heading-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e40af;
+  padding: 10px 0 6px;
+  margin-top: 8px;
+}
+
+.property-heading-divider::before,
+.property-heading-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: #bfdbfe;
+  border-radius: 1px;
+}
+
+.property-heading-divider::before {
+  flex: 0 0 0;
+}
+
 /* ── File input ── */
 .form-file {
   padding: 6px 10px;
@@ -1627,4 +1653,59 @@ pre code { background: none; padding: 0; }
 .btn-import-continue:hover {
   background: #1d4ed8;
   box-shadow: 0 4px 12px rgba(37,99,235,.25);
+}
+
+/* ── Import modal: processing overlay ────────────────────────────────────── */
+.import-processing-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: rgba(255,255,255,.96);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 10;
+}
+.import-processing-overlay.active {
+  display: flex;
+}
+.import-spinner {
+  width: 52px;
+  height: 52px;
+  border: 5px solid #e5e7eb;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: import-spin .8s linear infinite;
+}
+@keyframes import-spin {
+  to { transform: rotate(360deg); }
+}
+.import-processing-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+.import-processing-sub {
+  font-size: .88rem;
+  color: #6b7280;
+  margin: 0;
+  animation: import-pulse 1.6s ease-in-out infinite;
+}
+@keyframes import-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .35; }
+}
+.import-processing-dots::after {
+  content: '';
+  animation: import-dots 1.4s steps(4, end) infinite;
+}
+@keyframes import-dots {
+  0%   { content: ''; }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: ''; }
 }

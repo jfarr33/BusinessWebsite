@@ -19,6 +19,16 @@
         "model"
       ]
     },
+    "properties": {
+      "prefix": "property",
+      "fields": [
+        "street_address",
+        "address_line_2",
+        "city",
+        "state",
+        "zip_code"
+      ]
+    },
     "applicant": {
       "first_name": "first_name",
       "last_name": "last_name",
@@ -654,7 +664,7 @@
             "variant": "standard"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
@@ -671,7 +681,7 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
@@ -718,7 +728,7 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
@@ -735,7 +745,7 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
@@ -771,7 +781,7 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
@@ -1173,8 +1183,8 @@
     },
     {
       "section_id": "address_information",
-      "title": "Current Address",
-      "description": "Provide your mailing and current addresses.",
+      "title": "Mailing Address",
+      "description": "Provide your mailing address.",
       "order": 4,
       "layout": {
         "type": "grid",
@@ -1182,29 +1192,11 @@
       },
       "fields": [
         {
-          "name": "mailing_address_label",
-          "label": "Mailing Address",
-          "type": "display_text",
-          "group": "mailing",
-          "order": 1,
-          "layout": {
-            "desktop": 6,
-            "tablet": 12,
-            "mobile": 12
-          },
-          "ui": {
-            "text_style": "bold"
-          },
-          "validation": {
-            "required": false
-          }
-        },
-        {
           "name": "mailing_street_address",
           "label": "Street Address",
           "type": "text",
           "group": "mailing",
-          "order": 2,
+          "order": 1,
           "layout": {
             "desktop": 6,
             "tablet": 12,
@@ -1223,7 +1215,7 @@
           "label": "Address Line 2",
           "type": "text",
           "group": "mailing",
-          "order": 3,
+          "order": 2,
           "layout": {
             "desktop": 6,
             "tablet": 12,
@@ -1241,7 +1233,7 @@
           "label": "City",
           "type": "text",
           "group": "mailing",
-          "order": 4,
+          "order": 3,
           "layout": {
             "desktop": 3,
             "tablet": 6,
@@ -1259,7 +1251,7 @@
           "label": "State",
           "type": "select",
           "group": "mailing",
-          "order": 5,
+          "order": 4,
           "layout": {
             "desktop": 3,
             "tablet": 6,
@@ -1279,166 +1271,15 @@
           "label": "ZIP Code",
           "type": "text",
           "group": "mailing",
-          "order": 6,
+          "order": 5,
           "layout": {
-            "desktop": 6,
+            "desktop": 3,
             "tablet": 6,
             "mobile": 12
           },
           "placeholder": "12345",
           "ui": {
             "input_size": "small"
-          },
-          "validation": {
-            "required": false
-          }
-        },
-        {
-          "name": "current_address_label",
-          "label": "Current Address",
-          "type": "display_text",
-          "group": "current",
-          "order": 7,
-          "layout": {
-            "desktop": 6,
-            "tablet": 12,
-            "mobile": 12
-          },
-          "ui": {
-            "text_style": "bold"
-          },
-          "validation": {
-            "required": false
-          }
-        },
-        {
-          "name": "same_as_mailing_address",
-          "label": "Same as Mailing Address",
-          "type": "checkbox",
-          "group": "current",
-          "order": 8,
-          "checked": true,
-          "layout": {
-            "desktop": 6,
-            "tablet": 12,
-            "mobile": 12
-          },
-          "ui": {
-            "option_label_position": "right"
-          },
-          "validation": {
-            "required": false
-          }
-        },
-        {
-          "name": "current_street_address",
-          "label": "Street Address",
-          "type": "text",
-          "group": "current",
-          "order": 9,
-          "layout": {
-            "desktop": 6,
-            "tablet": 12,
-            "mobile": 12
-          },
-          "placeholder": "Enter a location",
-          "ui": {
-            "input_size": "full"
-          },
-          "conditional_visibility": {
-            "field": "same_as_mailing_address",
-            "operator": "is_not_checked"
-          },
-          "validation": {
-            "required": false
-          }
-        },
-        {
-          "name": "current_address_line_2",
-          "label": "Address Line 2",
-          "type": "text",
-          "group": "current",
-          "order": 10,
-          "layout": {
-            "desktop": 6,
-            "tablet": 12,
-            "mobile": 12
-          },
-          "ui": {
-            "input_size": "full"
-          },
-          "conditional_visibility": {
-            "field": "same_as_mailing_address",
-            "operator": "is_not_checked"
-          },
-          "validation": {
-            "required": false
-          }
-        },
-        {
-          "name": "current_city",
-          "label": "City",
-          "type": "text",
-          "group": "current",
-          "order": 11,
-          "layout": {
-            "desktop": 3,
-            "tablet": 6,
-            "mobile": 12
-          },
-          "ui": {
-            "input_size": "medium"
-          },
-          "conditional_visibility": {
-            "field": "same_as_mailing_address",
-            "operator": "is_not_checked"
-          },
-          "validation": {
-            "required": false
-          }
-        },
-        {
-          "name": "current_state",
-          "label": "State",
-          "type": "select",
-          "group": "current",
-          "order": 12,
-          "layout": {
-            "desktop": 3,
-            "tablet": 6,
-            "mobile": 12
-          },
-          "options_source": "us_states",
-          "placeholder": "- Select State -",
-          "ui": {
-            "input_size": "medium"
-          },
-          "conditional_visibility": {
-            "field": "same_as_mailing_address",
-            "operator": "is_not_checked"
-          },
-          "validation": {
-            "required": false
-          }
-        },
-        {
-          "name": "current_zip_code",
-          "label": "ZIP Code",
-          "type": "text",
-          "group": "current",
-          "order": 13,
-          "layout": {
-            "desktop": 6,
-            "tablet": 6,
-            "mobile": 12
-          },
-          "placeholder": "12345",
-          "ui": {
-            "input_size": "small"
-          },
-          "conditional_visibility": {
-            "field": "same_as_mailing_address",
-            "operator": "is_not_checked"
           },
           "validation": {
             "required": false
@@ -1462,10 +1303,27 @@
       },
       "fields": [
         {
-          "name": "property_street_address",
+          "name": "property_1_same_as_mailing",
+          "label": "Same as Mailing Address",
+          "type": "checkbox",
+          "order": 1,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_1_street_address",
           "label": "Property Address",
           "type": "text",
-          "order": 1,
+          "order": 2,
           "layout": {
             "desktop": 6,
             "tablet": 12,
@@ -1475,15 +1333,19 @@
           "ui": {
             "input_size": "full"
           },
+          "conditional_visibility": {
+            "field": "property_1_same_as_mailing",
+            "operator": "is_not_checked"
+          },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "property_address_line_2",
+          "name": "property_1_address_line_2",
           "label": "Address Line 2",
           "type": "text",
-          "order": 2,
+          "order": 3,
           "layout": {
             "desktop": 6,
             "tablet": 12,
@@ -1492,15 +1354,19 @@
           "ui": {
             "input_size": "full"
           },
+          "conditional_visibility": {
+            "field": "property_1_same_as_mailing",
+            "operator": "is_not_checked"
+          },
           "validation": {
             "required": false
           }
         },
         {
-          "name": "property_city",
+          "name": "property_1_city",
           "label": "City",
           "type": "text",
-          "order": 3,
+          "order": 4,
           "layout": {
             "desktop": 3,
             "tablet": 6,
@@ -1509,15 +1375,19 @@
           "ui": {
             "input_size": "medium"
           },
+          "conditional_visibility": {
+            "field": "property_1_same_as_mailing",
+            "operator": "is_not_checked"
+          },
           "validation": {
             "required": false
           }
         },
         {
-          "name": "property_state",
+          "name": "property_1_state",
           "label": "State",
           "type": "select",
-          "order": 3,
+          "order": 5,
           "layout": {
             "desktop": 3,
             "tablet": 6,
@@ -1528,15 +1398,19 @@
           "ui": {
             "input_size": "medium"
           },
+          "conditional_visibility": {
+            "field": "property_1_same_as_mailing",
+            "operator": "is_not_checked"
+          },
           "validation": {
             "required": false
           }
         },
         {
-          "name": "property_zip_code",
+          "name": "property_1_zip_code",
           "label": "ZIP Code",
           "type": "text",
-          "order": 4,
+          "order": 6,
           "layout": {
             "desktop": 3,
             "tablet": 6,
@@ -1546,15 +1420,19 @@
           "ui": {
             "input_size": "small"
           },
+          "conditional_visibility": {
+            "field": "property_1_same_as_mailing",
+            "operator": "is_not_checked"
+          },
           "validation": {
             "required": false
           }
         },
         {
-          "name": "home_type",
+          "name": "property_1_home_type",
           "label": "Type of Home",
           "type": "select",
-          "order": 6,
+          "order": 7,
           "layout": {
             "desktop": 4,
             "tablet": 6,
@@ -1599,14 +1477,14 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "home_primary_use",
+          "name": "property_1_home_primary_use",
           "label": "Primary Use For Home",
           "type": "select",
-          "order": 7,
+          "order": 8,
           "layout": {
             "desktop": 4,
             "tablet": 6,
@@ -1639,14 +1517,14 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "home_primary_occupancy",
+          "name": "property_1_home_primary_occupancy",
           "label": "Primary Occupancy",
           "type": "select",
-          "order": 8,
+          "order": 9,
           "layout": {
             "desktop": 4,
             "tablet": 6,
@@ -1667,21 +1545,21 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "vacancy_duration",
+          "name": "property_1_vacancy_duration",
           "label": "How long will the property be vacant at one time?",
           "type": "text",
-          "order": 9,
+          "order": 10,
           "layout": {
             "desktop": 6,
             "tablet": 12,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "home_primary_use",
+            "field": "property_1_home_primary_use",
             "operator": "equals",
             "value": "secondary"
           },
@@ -1693,10 +1571,10 @@
           }
         },
         {
-          "name": "has_caretaker",
+          "name": "property_1_has_caretaker",
           "label": "Is there a caretaker?",
           "type": "radio",
-          "order": 10,
+          "order": 11,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -1704,7 +1582,7 @@
           },
           "options_source": "yes_no",
           "conditional_visibility": {
-            "field": "home_primary_use",
+            "field": "property_1_home_primary_use",
             "operator": "equals",
             "value": "secondary"
           },
@@ -1718,17 +1596,17 @@
           }
         },
         {
-          "name": "rental_weeks_per_year",
+          "name": "property_1_rental_weeks_per_year",
           "label": "How many weeks per year will the property be rented?",
           "type": "number",
-          "order": 11,
+          "order": 12,
           "layout": {
             "desktop": 6,
             "tablet": 12,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "home_primary_use",
+            "field": "property_1_home_primary_use",
             "operator": "equals",
             "value": "vacation_rental"
           },
@@ -1736,15 +1614,15 @@
             "input_size": "full"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "property_titled_other_name",
+          "name": "property_1_titled_other_name",
           "label": "Is property titled in a name Other Than your personal name(s)?",
           "help_text": "Example: Trust, LLC, Corporation, Partnership, etc.",
           "type": "radio",
-          "order": 12,
+          "order": 13,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -1757,21 +1635,21 @@
             "variant": "standard"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "property_title_name",
+          "name": "property_1_title_name",
           "label": "Name on Title of Property",
           "type": "text",
-          "order": 13,
+          "order": 14,
           "layout": {
             "desktop": 6,
             "tablet": 12,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "property_titled_other_name",
+            "field": "property_1_titled_other_name",
             "operator": "equals",
             "value": "yes"
           },
@@ -1779,14 +1657,14 @@
             "input_size": "full"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "is_new_purchase",
+          "name": "property_1_is_new_purchase",
           "label": "Is this a New Purchase?",
           "type": "radio",
-          "order": 13,
+          "order": 15,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -1804,39 +1682,17 @@
           }
         },
         {
-          "name": "purchase_date",
+          "name": "property_1_purchase_date",
           "label": "Purchase Date",
           "type": "date",
-          "order": 14,
+          "order": 16,
           "layout": {
             "desktop": 6,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "is_new_purchase",
-            "operator": "equals",
-            "value": "yes"
-          },
-          "ui": {
-            "input_size": "full"
-          },
-          "validation": {
-            "required": true
-          }
-        },
-        {
-          "name": "purchase_price",
-          "label": "Purchase Price",
-          "type": "currency",
-          "order": 15,
-          "layout": {
-            "desktop": 6,
-            "tablet": 6,
-            "mobile": 12
-          },
-          "conditional_visibility": {
-            "field": "is_new_purchase",
+            "field": "property_1_is_new_purchase",
             "operator": "equals",
             "value": "yes"
           },
@@ -1848,10 +1704,32 @@
           }
         },
         {
-          "name": "will_have_mortgage",
+          "name": "property_1_purchase_price",
+          "label": "Purchase Price",
+          "type": "currency",
+          "order": 17,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_1_is_new_purchase",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_1_will_have_mortgage",
           "label": "Will there be a Mortgage?",
           "type": "radio",
-          "order": 16,
+          "order": 18,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -1864,14 +1742,14 @@
             "variant": "standard"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "additional_coverage_interests",
+          "name": "property_1_additional_coverage_interests",
           "label": "Additional Property Coverage Interests",
           "type": "checkbox_group",
-          "order": 17,
+          "order": 19,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -1903,29 +1781,12 @@
           "validation": {
             "required": false
           }
-        }
-      ]
-    },
-    {
-      "section_id": "additional_property_details",
-      "title": "Additional Property Details",
-      "description": null,
-      "order": 6,
-      "conditional_visibility": {
-        "field": "insurance_types",
-        "operator": "contains_option",
-        "value": "homeowners"
-      },
-      "layout": {
-        "type": "grid",
-        "columns": 12
-      },
-      "fields": [
+        },
         {
-          "name": "num_full_baths",
+          "name": "property_1_num_full_baths",
           "label": "# of Fulls Baths",
           "type": "number",
-          "order": 1,
+          "order": 20,
           "layout": {
             "desktop": 4,
             "tablet": 4,
@@ -1939,10 +1800,10 @@
           }
         },
         {
-          "name": "num_three_quarter_baths",
+          "name": "property_1_num_three_quarter_baths",
           "label": "# of 3/4 Baths (Shower Only)",
           "type": "number",
-          "order": 1,
+          "order": 21,
           "layout": {
             "desktop": 4,
             "tablet": 4,
@@ -1956,10 +1817,10 @@
           }
         },
         {
-          "name": "num_half_baths",
+          "name": "property_1_num_half_baths",
           "label": "# of Half Baths",
           "type": "number",
-          "order": 1,
+          "order": 22,
           "layout": {
             "desktop": 4,
             "tablet": 4,
@@ -1973,10 +1834,10 @@
           }
         },
         {
-          "name": "has_basement",
+          "name": "property_1_has_basement",
           "label": "Does the home have a basement?",
           "type": "radio",
-          "order": 2,
+          "order": 23,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -1993,17 +1854,17 @@
           }
         },
         {
-          "name": "basement_type",
+          "name": "property_1_basement_type",
           "label": "Basement Type",
           "type": "select",
-          "order": 2,
+          "order": 24,
           "layout": {
             "desktop": 4,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "has_basement",
+            "field": "property_1_has_basement",
             "operator": "equals",
             "value": "yes"
           },
@@ -2026,17 +1887,17 @@
           }
         },
         {
-          "name": "basement_finished_pct",
+          "name": "property_1_basement_finished_pct",
           "label": "What % of basement is finished?",
           "type": "text",
-          "order": 2,
+          "order": 25,
           "layout": {
             "desktop": 4,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "has_basement",
+            "field": "property_1_has_basement",
             "operator": "equals",
             "value": "yes"
           },
@@ -2048,10 +1909,10 @@
           }
         },
         {
-          "name": "has_home_updates",
+          "name": "property_1_has_home_updates",
           "label": "Has there been any updates to the Roof, Plumbing, Heating or Electrical at your home?",
           "type": "radio",
-          "order": 3,
+          "order": 26,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -2069,17 +1930,17 @@
           }
         },
         {
-          "name": "roof_update_year",
+          "name": "property_1_roof_update_year",
           "label": "Roof Update Year",
           "type": "number",
-          "order": 3,
+          "order": 27,
           "layout": {
             "desktop": 6,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "has_home_updates",
+            "field": "property_1_has_home_updates",
             "operator": "equals",
             "value": "yes"
           },
@@ -2094,17 +1955,17 @@
           }
         },
         {
-          "name": "roof_update_type",
+          "name": "property_1_roof_update_type",
           "label": "Roof Update Type",
           "type": "select",
-          "order": 3,
+          "order": 28,
           "layout": {
             "desktop": 6,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "has_home_updates",
+            "field": "property_1_has_home_updates",
             "operator": "equals",
             "value": "yes"
           },
@@ -2127,17 +1988,17 @@
           }
         },
         {
-          "name": "plumbing_update_year",
+          "name": "property_1_plumbing_update_year",
           "label": "Plumbing Update Year",
           "type": "number",
-          "order": 3,
+          "order": 29,
           "layout": {
             "desktop": 6,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "has_home_updates",
+            "field": "property_1_has_home_updates",
             "operator": "equals",
             "value": "yes"
           },
@@ -2152,17 +2013,17 @@
           }
         },
         {
-          "name": "plumbing_update_type",
+          "name": "property_1_plumbing_update_type",
           "label": "Plumbing Update Type",
           "type": "select",
-          "order": 3,
+          "order": 30,
           "layout": {
             "desktop": 6,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "has_home_updates",
+            "field": "property_1_has_home_updates",
             "operator": "equals",
             "value": "yes"
           },
@@ -2185,17 +2046,17 @@
           }
         },
         {
-          "name": "heating_update_year",
+          "name": "property_1_heating_update_year",
           "label": "Heating Update Year",
           "type": "number",
-          "order": 3,
+          "order": 31,
           "layout": {
             "desktop": 6,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "has_home_updates",
+            "field": "property_1_has_home_updates",
             "operator": "equals",
             "value": "yes"
           },
@@ -2210,17 +2071,17 @@
           }
         },
         {
-          "name": "heating_update_type",
+          "name": "property_1_heating_update_type",
           "label": "Heating Update Type",
           "type": "select",
-          "order": 3,
+          "order": 32,
           "layout": {
             "desktop": 6,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "has_home_updates",
+            "field": "property_1_has_home_updates",
             "operator": "equals",
             "value": "yes"
           },
@@ -2243,17 +2104,17 @@
           }
         },
         {
-          "name": "electrical_update_year",
+          "name": "property_1_electrical_update_year",
           "label": "Electrical Update Year",
           "type": "number",
-          "order": 3,
+          "order": 33,
           "layout": {
             "desktop": 6,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "has_home_updates",
+            "field": "property_1_has_home_updates",
             "operator": "equals",
             "value": "yes"
           },
@@ -2268,17 +2129,17 @@
           }
         },
         {
-          "name": "electrical_update_type",
+          "name": "property_1_electrical_update_type",
           "label": "Electrical Update Type",
           "type": "select",
-          "order": 3,
+          "order": 34,
           "layout": {
             "desktop": 6,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "has_home_updates",
+            "field": "property_1_has_home_updates",
             "operator": "equals",
             "value": "yes"
           },
@@ -2301,10 +2162,10 @@
           }
         },
         {
-          "name": "security_system",
+          "name": "property_1_security_system",
           "label": "Does your home have a security system?",
           "type": "select",
-          "order": 4,
+          "order": 35,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -2337,11 +2198,11 @@
           }
         },
         {
-          "name": "home_discounts",
+          "name": "property_1_home_discounts",
           "label": "Does your home qualify for discounts?",
           "help_text": "Check all that apply",
           "type": "checkbox_group",
-          "order": 5,
+          "order": 36,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -2415,10 +2276,10 @@
           }
         },
         {
-          "name": "multiple_dwellings",
+          "name": "property_1_multiple_dwellings",
           "label": "Are there multiple dwellings on this property?",
           "type": "radio",
-          "order": 6,
+          "order": 37,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -2436,10 +2297,10 @@
           }
         },
         {
-          "name": "have_dogs",
+          "name": "property_1_have_dogs",
           "label": "Have Dogs?",
           "type": "radio",
-          "order": 7,
+          "order": 38,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -2457,17 +2318,17 @@
           }
         },
         {
-          "name": "dog_breeds",
+          "name": "property_1_dog_breeds",
           "label": "Breed(s) of Dog(s)",
           "type": "text",
-          "order": 8,
+          "order": 39,
           "layout": {
             "desktop": 6,
             "tablet": 6,
             "mobile": 12
           },
           "conditional_visibility": {
-            "field": "have_dogs",
+            "field": "property_1_have_dogs",
             "operator": "equals",
             "value": "yes"
           },
@@ -2479,10 +2340,10 @@
           }
         },
         {
-          "name": "dog_bite_history",
+          "name": "property_1_dog_bite_history",
           "label": "Any dogs have bite history?",
           "type": "radio",
-          "order": 8,
+          "order": 40,
           "layout": {
             "desktop": 6,
             "tablet": 6,
@@ -2490,7 +2351,7 @@
           },
           "options_source": "yes_no",
           "conditional_visibility": {
-            "field": "have_dogs",
+            "field": "property_1_have_dogs",
             "operator": "equals",
             "value": "yes"
           },
@@ -2500,14 +2361,14 @@
             "variant": "standard"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "has_pool",
+          "name": "property_1_has_pool",
           "label": "Has Pool?",
           "type": "radio",
-          "order": 9,
+          "order": 41,
           "layout": {
             "desktop": 12,
             "tablet": 12,
@@ -2520,14 +2381,14 @@
             "variant": "standard"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "pool_type",
+          "name": "property_1_pool_type",
           "label": "Pool Type",
           "type": "radio",
-          "order": 10,
+          "order": 42,
           "layout": {
             "desktop": 6,
             "tablet": 6,
@@ -2544,7 +2405,7 @@
             }
           ],
           "conditional_visibility": {
-            "field": "has_pool",
+            "field": "property_1_has_pool",
             "operator": "equals",
             "value": "yes"
           },
@@ -2554,14 +2415,14 @@
             "variant": "standard"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
-          "name": "pool_fenced",
+          "name": "property_1_pool_fenced",
           "label": "Is Pool Fenced?",
           "type": "radio",
-          "order": 10,
+          "order": 43,
           "layout": {
             "desktop": 6,
             "tablet": 6,
@@ -2569,7 +2430,7 @@
           },
           "options_source": "yes_no",
           "conditional_visibility": {
-            "field": "has_pool",
+            "field": "property_1_has_pool",
             "operator": "equals",
             "value": "yes"
           },
@@ -2579,7 +2440,3696 @@
             "variant": "standard"
           },
           "validation": {
-            "required": true
+            "required": false
+          }
+        },
+        {
+          "name": "property_1_add_another",
+          "label": "Add Another Property",
+          "type": "checkbox",
+          "order": 44,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_heading",
+          "label": "Property 2",
+          "type": "section_heading",
+          "order": 45,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_street_address",
+          "label": "Property Address",
+          "type": "text",
+          "order": 46,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "placeholder": "Enter a location",
+          "ui": {
+            "input_size": "full"
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_address_line_2",
+          "label": "Address Line 2",
+          "type": "text",
+          "order": 47,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_city",
+          "label": "City",
+          "type": "text",
+          "order": 48,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_state",
+          "label": "State",
+          "type": "select",
+          "order": 49,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select State -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_zip_code",
+          "label": "ZIP Code",
+          "type": "text",
+          "order": 50,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "12345",
+          "ui": {
+            "input_size": "small"
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_home_type",
+          "label": "Type of Home",
+          "type": "select",
+          "order": 51,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Single Family",
+              "value": "single_family"
+            },
+            {
+              "label": "Condo",
+              "value": "condo"
+            },
+            {
+              "label": "Manufactured",
+              "value": "manufactured"
+            },
+            {
+              "label": "Townhome",
+              "value": "townhome"
+            },
+            {
+              "label": "Duplex",
+              "value": "duplex"
+            },
+            {
+              "label": "Triplex",
+              "value": "triplex"
+            },
+            {
+              "label": "4-Plex",
+              "value": "fourplex"
+            },
+            {
+              "label": "Apartment",
+              "value": "apartment"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_home_primary_use",
+          "label": "Primary Use For Home",
+          "type": "select",
+          "order": 52,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Primary Home",
+              "value": "primary"
+            },
+            {
+              "label": "Secondary Home",
+              "value": "secondary"
+            },
+            {
+              "label": "Vacation Rental",
+              "value": "vacation_rental"
+            },
+            {
+              "label": "Short-Term Rental (Less than 6 months)",
+              "value": "short_term_rental"
+            },
+            {
+              "label": "Long-Term Rental (Greater than 6 months)",
+              "value": "long_term_rental"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_home_primary_occupancy",
+          "label": "Primary Occupancy",
+          "type": "select",
+          "order": 53,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Owner Occupied",
+              "value": "owner_occupied"
+            },
+            {
+              "label": "Tenant Occupied",
+              "value": "tenant_occupied"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_vacancy_duration",
+          "label": "How long will the property be vacant at one time?",
+          "type": "text",
+          "order": 54,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_home_primary_use",
+            "operator": "equals",
+            "value": "secondary"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_has_caretaker",
+          "label": "Is there a caretaker?",
+          "type": "radio",
+          "order": 55,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "property_2_home_primary_use",
+            "operator": "equals",
+            "value": "secondary"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_rental_weeks_per_year",
+          "label": "How many weeks per year will the property be rented?",
+          "type": "number",
+          "order": 56,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_home_primary_use",
+            "operator": "equals",
+            "value": "vacation_rental"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_titled_other_name",
+          "label": "Is property titled in a name Other Than your personal name(s)?",
+          "help_text": "Example: Trust, LLC, Corporation, Partnership, etc.",
+          "type": "radio",
+          "order": 57,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_title_name",
+          "label": "Name on Title of Property",
+          "type": "text",
+          "order": 58,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_titled_other_name",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_is_new_purchase",
+          "label": "Is this a New Purchase?",
+          "type": "radio",
+          "order": 59,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_purchase_date",
+          "label": "Purchase Date",
+          "type": "date",
+          "order": 60,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_is_new_purchase",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_purchase_price",
+          "label": "Purchase Price",
+          "type": "currency",
+          "order": 61,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_is_new_purchase",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_will_have_mortgage",
+          "label": "Will there be a Mortgage?",
+          "type": "radio",
+          "order": 62,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_additional_coverage_interests",
+          "label": "Additional Property Coverage Interests",
+          "type": "checkbox_group",
+          "order": 63,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "None",
+              "value": "none"
+            },
+            {
+              "label": "Flood",
+              "value": "flood"
+            },
+            {
+              "label": "Earthquake",
+              "value": "earthquake"
+            },
+            {
+              "label": "Hurricane",
+              "value": "hurricane"
+            }
+          ],
+          "ui": {
+            "option_layout": "grid",
+            "option_label_position": "right",
+            "variant": "card"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_num_full_baths",
+          "label": "# of Fulls Baths",
+          "type": "number",
+          "order": 64,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_num_three_quarter_baths",
+          "label": "# of 3/4 Baths (Shower Only)",
+          "type": "number",
+          "order": 65,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_num_half_baths",
+          "label": "# of Half Baths",
+          "type": "number",
+          "order": 66,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_has_basement",
+          "label": "Does the home have a basement?",
+          "type": "radio",
+          "order": 67,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_basement_type",
+          "label": "Basement Type",
+          "type": "select",
+          "order": 68,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_has_basement",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_basement_finished_pct",
+          "label": "What % of basement is finished?",
+          "type": "text",
+          "order": 69,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_has_basement",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_has_home_updates",
+          "label": "Has there been any updates to the Roof, Plumbing, Heating or Electrical at your home?",
+          "type": "radio",
+          "order": 70,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_roof_update_year",
+          "label": "Roof Update Year",
+          "type": "number",
+          "order": 71,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_2_roof_update_type",
+          "label": "Roof Update Type",
+          "type": "select",
+          "order": 72,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_plumbing_update_year",
+          "label": "Plumbing Update Year",
+          "type": "number",
+          "order": 73,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_2_plumbing_update_type",
+          "label": "Plumbing Update Type",
+          "type": "select",
+          "order": 74,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_heating_update_year",
+          "label": "Heating Update Year",
+          "type": "number",
+          "order": 75,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_2_heating_update_type",
+          "label": "Heating Update Type",
+          "type": "select",
+          "order": 76,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_electrical_update_year",
+          "label": "Electrical Update Year",
+          "type": "number",
+          "order": 77,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_2_electrical_update_type",
+          "label": "Electrical Update Type",
+          "type": "select",
+          "order": 78,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_security_system",
+          "label": "Does your home have a security system?",
+          "type": "select",
+          "order": 79,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "None",
+              "value": "none"
+            },
+            {
+              "label": "Local Security System (Alarm Sound)",
+              "value": "local_alarm"
+            },
+            {
+              "label": "Central Station Monitoring System",
+              "value": "central_station"
+            },
+            {
+              "label": "Smart Security System (Ring doorbell, or similar)",
+              "value": "smart_system"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_home_discounts",
+          "label": "Does your home qualify for discounts?",
+          "help_text": "Check all that apply",
+          "type": "checkbox_group",
+          "order": 80,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Deadbolts",
+              "value": "deadbolts"
+            },
+            {
+              "label": "Fire Extinguisher",
+              "value": "fire_extinguisher"
+            },
+            {
+              "label": "Smoke Alarm",
+              "value": "smoke_alarm"
+            },
+            {
+              "label": "Monitored Smoke Alarm",
+              "value": "monitored_smoke_alarm"
+            },
+            {
+              "label": "Gated Community",
+              "value": "gated_community"
+            },
+            {
+              "label": "Indoor Sprinklers",
+              "value": "indoor_sprinklers"
+            },
+            {
+              "label": "Electric Backup Generator",
+              "value": "electric_backup_generator"
+            },
+            {
+              "label": "Water Leak Detector",
+              "value": "water_leak_detector"
+            },
+            {
+              "label": "Water Flow Alarm",
+              "value": "water_flow_alarm"
+            },
+            {
+              "label": "Automatic Water Shutoff",
+              "value": "automatic_water_shutoff"
+            },
+            {
+              "label": "Patrolled",
+              "value": "patrolled"
+            },
+            {
+              "label": "Military",
+              "value": "military"
+            },
+            {
+              "label": "Condo: 24 Hr Security",
+              "value": "condo_24hr_security"
+            },
+            {
+              "label": "Condo: Secured Building",
+              "value": "condo_secured_building"
+            }
+          ],
+          "ui": {
+            "option_layout": "grid",
+            "option_label_position": "right",
+            "variant": "card"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_multiple_dwellings",
+          "label": "Are there multiple dwellings on this property?",
+          "type": "radio",
+          "order": 81,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_have_dogs",
+          "label": "Have Dogs?",
+          "type": "radio",
+          "order": 82,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_dog_breeds",
+          "label": "Breed(s) of Dog(s)",
+          "type": "text",
+          "order": 83,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_have_dogs",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_dog_bite_history",
+          "label": "Any dogs have bite history?",
+          "type": "radio",
+          "order": 84,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "property_2_have_dogs",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_has_pool",
+          "label": "Has Pool?",
+          "type": "radio",
+          "order": 85,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_2_pool_type",
+          "label": "Pool Type",
+          "type": "radio",
+          "order": 86,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "In Ground",
+              "value": "in_ground"
+            },
+            {
+              "label": "Above Ground",
+              "value": "above_ground"
+            }
+          ],
+          "conditional_visibility": {
+            "field": "property_2_has_pool",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_pool_fenced",
+          "label": "Is Pool Fenced?",
+          "type": "radio",
+          "order": 87,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "property_2_has_pool",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_2_add_another",
+          "label": "Add Another Property",
+          "type": "checkbox",
+          "order": 88,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_1_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_heading",
+          "label": "Property 3",
+          "type": "section_heading",
+          "order": 89,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_street_address",
+          "label": "Property Address",
+          "type": "text",
+          "order": 90,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "placeholder": "Enter a location",
+          "ui": {
+            "input_size": "full"
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_address_line_2",
+          "label": "Address Line 2",
+          "type": "text",
+          "order": 91,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_city",
+          "label": "City",
+          "type": "text",
+          "order": 92,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_state",
+          "label": "State",
+          "type": "select",
+          "order": 93,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select State -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_zip_code",
+          "label": "ZIP Code",
+          "type": "text",
+          "order": 94,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "12345",
+          "ui": {
+            "input_size": "small"
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_home_type",
+          "label": "Type of Home",
+          "type": "select",
+          "order": 95,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Single Family",
+              "value": "single_family"
+            },
+            {
+              "label": "Condo",
+              "value": "condo"
+            },
+            {
+              "label": "Manufactured",
+              "value": "manufactured"
+            },
+            {
+              "label": "Townhome",
+              "value": "townhome"
+            },
+            {
+              "label": "Duplex",
+              "value": "duplex"
+            },
+            {
+              "label": "Triplex",
+              "value": "triplex"
+            },
+            {
+              "label": "4-Plex",
+              "value": "fourplex"
+            },
+            {
+              "label": "Apartment",
+              "value": "apartment"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_home_primary_use",
+          "label": "Primary Use For Home",
+          "type": "select",
+          "order": 96,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Primary Home",
+              "value": "primary"
+            },
+            {
+              "label": "Secondary Home",
+              "value": "secondary"
+            },
+            {
+              "label": "Vacation Rental",
+              "value": "vacation_rental"
+            },
+            {
+              "label": "Short-Term Rental (Less than 6 months)",
+              "value": "short_term_rental"
+            },
+            {
+              "label": "Long-Term Rental (Greater than 6 months)",
+              "value": "long_term_rental"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_home_primary_occupancy",
+          "label": "Primary Occupancy",
+          "type": "select",
+          "order": 97,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Owner Occupied",
+              "value": "owner_occupied"
+            },
+            {
+              "label": "Tenant Occupied",
+              "value": "tenant_occupied"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_vacancy_duration",
+          "label": "How long will the property be vacant at one time?",
+          "type": "text",
+          "order": 98,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_home_primary_use",
+            "operator": "equals",
+            "value": "secondary"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_has_caretaker",
+          "label": "Is there a caretaker?",
+          "type": "radio",
+          "order": 99,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "property_3_home_primary_use",
+            "operator": "equals",
+            "value": "secondary"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_rental_weeks_per_year",
+          "label": "How many weeks per year will the property be rented?",
+          "type": "number",
+          "order": 100,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_home_primary_use",
+            "operator": "equals",
+            "value": "vacation_rental"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_titled_other_name",
+          "label": "Is property titled in a name Other Than your personal name(s)?",
+          "help_text": "Example: Trust, LLC, Corporation, Partnership, etc.",
+          "type": "radio",
+          "order": 101,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_title_name",
+          "label": "Name on Title of Property",
+          "type": "text",
+          "order": 102,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_titled_other_name",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_is_new_purchase",
+          "label": "Is this a New Purchase?",
+          "type": "radio",
+          "order": 103,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_purchase_date",
+          "label": "Purchase Date",
+          "type": "date",
+          "order": 104,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_is_new_purchase",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_purchase_price",
+          "label": "Purchase Price",
+          "type": "currency",
+          "order": 105,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_is_new_purchase",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_will_have_mortgage",
+          "label": "Will there be a Mortgage?",
+          "type": "radio",
+          "order": 106,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_additional_coverage_interests",
+          "label": "Additional Property Coverage Interests",
+          "type": "checkbox_group",
+          "order": 107,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "None",
+              "value": "none"
+            },
+            {
+              "label": "Flood",
+              "value": "flood"
+            },
+            {
+              "label": "Earthquake",
+              "value": "earthquake"
+            },
+            {
+              "label": "Hurricane",
+              "value": "hurricane"
+            }
+          ],
+          "ui": {
+            "option_layout": "grid",
+            "option_label_position": "right",
+            "variant": "card"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_num_full_baths",
+          "label": "# of Fulls Baths",
+          "type": "number",
+          "order": 108,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_num_three_quarter_baths",
+          "label": "# of 3/4 Baths (Shower Only)",
+          "type": "number",
+          "order": 109,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_num_half_baths",
+          "label": "# of Half Baths",
+          "type": "number",
+          "order": 110,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_has_basement",
+          "label": "Does the home have a basement?",
+          "type": "radio",
+          "order": 111,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_basement_type",
+          "label": "Basement Type",
+          "type": "select",
+          "order": 112,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_has_basement",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_basement_finished_pct",
+          "label": "What % of basement is finished?",
+          "type": "text",
+          "order": 113,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_has_basement",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_has_home_updates",
+          "label": "Has there been any updates to the Roof, Plumbing, Heating or Electrical at your home?",
+          "type": "radio",
+          "order": 114,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_roof_update_year",
+          "label": "Roof Update Year",
+          "type": "number",
+          "order": 115,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_3_roof_update_type",
+          "label": "Roof Update Type",
+          "type": "select",
+          "order": 116,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_plumbing_update_year",
+          "label": "Plumbing Update Year",
+          "type": "number",
+          "order": 117,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_3_plumbing_update_type",
+          "label": "Plumbing Update Type",
+          "type": "select",
+          "order": 118,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_heating_update_year",
+          "label": "Heating Update Year",
+          "type": "number",
+          "order": 119,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_3_heating_update_type",
+          "label": "Heating Update Type",
+          "type": "select",
+          "order": 120,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_electrical_update_year",
+          "label": "Electrical Update Year",
+          "type": "number",
+          "order": 121,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_3_electrical_update_type",
+          "label": "Electrical Update Type",
+          "type": "select",
+          "order": 122,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_security_system",
+          "label": "Does your home have a security system?",
+          "type": "select",
+          "order": 123,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "None",
+              "value": "none"
+            },
+            {
+              "label": "Local Security System (Alarm Sound)",
+              "value": "local_alarm"
+            },
+            {
+              "label": "Central Station Monitoring System",
+              "value": "central_station"
+            },
+            {
+              "label": "Smart Security System (Ring doorbell, or similar)",
+              "value": "smart_system"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_home_discounts",
+          "label": "Does your home qualify for discounts?",
+          "help_text": "Check all that apply",
+          "type": "checkbox_group",
+          "order": 124,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Deadbolts",
+              "value": "deadbolts"
+            },
+            {
+              "label": "Fire Extinguisher",
+              "value": "fire_extinguisher"
+            },
+            {
+              "label": "Smoke Alarm",
+              "value": "smoke_alarm"
+            },
+            {
+              "label": "Monitored Smoke Alarm",
+              "value": "monitored_smoke_alarm"
+            },
+            {
+              "label": "Gated Community",
+              "value": "gated_community"
+            },
+            {
+              "label": "Indoor Sprinklers",
+              "value": "indoor_sprinklers"
+            },
+            {
+              "label": "Electric Backup Generator",
+              "value": "electric_backup_generator"
+            },
+            {
+              "label": "Water Leak Detector",
+              "value": "water_leak_detector"
+            },
+            {
+              "label": "Water Flow Alarm",
+              "value": "water_flow_alarm"
+            },
+            {
+              "label": "Automatic Water Shutoff",
+              "value": "automatic_water_shutoff"
+            },
+            {
+              "label": "Patrolled",
+              "value": "patrolled"
+            },
+            {
+              "label": "Military",
+              "value": "military"
+            },
+            {
+              "label": "Condo: 24 Hr Security",
+              "value": "condo_24hr_security"
+            },
+            {
+              "label": "Condo: Secured Building",
+              "value": "condo_secured_building"
+            }
+          ],
+          "ui": {
+            "option_layout": "grid",
+            "option_label_position": "right",
+            "variant": "card"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_multiple_dwellings",
+          "label": "Are there multiple dwellings on this property?",
+          "type": "radio",
+          "order": 125,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_have_dogs",
+          "label": "Have Dogs?",
+          "type": "radio",
+          "order": 126,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_dog_breeds",
+          "label": "Breed(s) of Dog(s)",
+          "type": "text",
+          "order": 127,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_have_dogs",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_dog_bite_history",
+          "label": "Any dogs have bite history?",
+          "type": "radio",
+          "order": 128,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "property_3_have_dogs",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_has_pool",
+          "label": "Has Pool?",
+          "type": "radio",
+          "order": 129,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_3_pool_type",
+          "label": "Pool Type",
+          "type": "radio",
+          "order": 130,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "In Ground",
+              "value": "in_ground"
+            },
+            {
+              "label": "Above Ground",
+              "value": "above_ground"
+            }
+          ],
+          "conditional_visibility": {
+            "field": "property_3_has_pool",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_pool_fenced",
+          "label": "Is Pool Fenced?",
+          "type": "radio",
+          "order": 131,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "property_3_has_pool",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_3_add_another",
+          "label": "Add Another Property",
+          "type": "checkbox",
+          "order": 132,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "option_label_position": "right"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_2_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_heading",
+          "label": "Property 4",
+          "type": "section_heading",
+          "order": 133,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_street_address",
+          "label": "Property Address",
+          "type": "text",
+          "order": 134,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "placeholder": "Enter a location",
+          "ui": {
+            "input_size": "full"
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_address_line_2",
+          "label": "Address Line 2",
+          "type": "text",
+          "order": 135,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_city",
+          "label": "City",
+          "type": "text",
+          "order": 136,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_state",
+          "label": "State",
+          "type": "select",
+          "order": 137,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "us_states",
+          "placeholder": "- Select State -",
+          "ui": {
+            "input_size": "medium"
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_zip_code",
+          "label": "ZIP Code",
+          "type": "text",
+          "order": 138,
+          "layout": {
+            "desktop": 3,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "placeholder": "12345",
+          "ui": {
+            "input_size": "small"
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_home_type",
+          "label": "Type of Home",
+          "type": "select",
+          "order": 139,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Single Family",
+              "value": "single_family"
+            },
+            {
+              "label": "Condo",
+              "value": "condo"
+            },
+            {
+              "label": "Manufactured",
+              "value": "manufactured"
+            },
+            {
+              "label": "Townhome",
+              "value": "townhome"
+            },
+            {
+              "label": "Duplex",
+              "value": "duplex"
+            },
+            {
+              "label": "Triplex",
+              "value": "triplex"
+            },
+            {
+              "label": "4-Plex",
+              "value": "fourplex"
+            },
+            {
+              "label": "Apartment",
+              "value": "apartment"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_home_primary_use",
+          "label": "Primary Use For Home",
+          "type": "select",
+          "order": 140,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Primary Home",
+              "value": "primary"
+            },
+            {
+              "label": "Secondary Home",
+              "value": "secondary"
+            },
+            {
+              "label": "Vacation Rental",
+              "value": "vacation_rental"
+            },
+            {
+              "label": "Short-Term Rental (Less than 6 months)",
+              "value": "short_term_rental"
+            },
+            {
+              "label": "Long-Term Rental (Greater than 6 months)",
+              "value": "long_term_rental"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_home_primary_occupancy",
+          "label": "Primary Occupancy",
+          "type": "select",
+          "order": 141,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Owner Occupied",
+              "value": "owner_occupied"
+            },
+            {
+              "label": "Tenant Occupied",
+              "value": "tenant_occupied"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_vacancy_duration",
+          "label": "How long will the property be vacant at one time?",
+          "type": "text",
+          "order": 142,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_home_primary_use",
+            "operator": "equals",
+            "value": "secondary"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_has_caretaker",
+          "label": "Is there a caretaker?",
+          "type": "radio",
+          "order": 143,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "property_4_home_primary_use",
+            "operator": "equals",
+            "value": "secondary"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_rental_weeks_per_year",
+          "label": "How many weeks per year will the property be rented?",
+          "type": "number",
+          "order": 144,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_home_primary_use",
+            "operator": "equals",
+            "value": "vacation_rental"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_titled_other_name",
+          "label": "Is property titled in a name Other Than your personal name(s)?",
+          "help_text": "Example: Trust, LLC, Corporation, Partnership, etc.",
+          "type": "radio",
+          "order": 145,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_title_name",
+          "label": "Name on Title of Property",
+          "type": "text",
+          "order": 146,
+          "layout": {
+            "desktop": 6,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_titled_other_name",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_is_new_purchase",
+          "label": "Is this a New Purchase?",
+          "type": "radio",
+          "order": 147,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_purchase_date",
+          "label": "Purchase Date",
+          "type": "date",
+          "order": 148,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_is_new_purchase",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_purchase_price",
+          "label": "Purchase Price",
+          "type": "currency",
+          "order": 149,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_is_new_purchase",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_will_have_mortgage",
+          "label": "Will there be a Mortgage?",
+          "type": "radio",
+          "order": 150,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_additional_coverage_interests",
+          "label": "Additional Property Coverage Interests",
+          "type": "checkbox_group",
+          "order": 151,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "None",
+              "value": "none"
+            },
+            {
+              "label": "Flood",
+              "value": "flood"
+            },
+            {
+              "label": "Earthquake",
+              "value": "earthquake"
+            },
+            {
+              "label": "Hurricane",
+              "value": "hurricane"
+            }
+          ],
+          "ui": {
+            "option_layout": "grid",
+            "option_label_position": "right",
+            "variant": "card"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_num_full_baths",
+          "label": "# of Fulls Baths",
+          "type": "number",
+          "order": 152,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_num_three_quarter_baths",
+          "label": "# of 3/4 Baths (Shower Only)",
+          "type": "number",
+          "order": 153,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_num_half_baths",
+          "label": "# of Half Baths",
+          "type": "number",
+          "order": 154,
+          "layout": {
+            "desktop": 4,
+            "tablet": 4,
+            "mobile": 12
+          },
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_has_basement",
+          "label": "Does the home have a basement?",
+          "type": "radio",
+          "order": 155,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_basement_type",
+          "label": "Basement Type",
+          "type": "select",
+          "order": 156,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_has_basement",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_basement_finished_pct",
+          "label": "What % of basement is finished?",
+          "type": "text",
+          "order": 157,
+          "layout": {
+            "desktop": 4,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_has_basement",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_has_home_updates",
+          "label": "Has there been any updates to the Roof, Plumbing, Heating or Electrical at your home?",
+          "type": "radio",
+          "order": 158,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_roof_update_year",
+          "label": "Roof Update Year",
+          "type": "number",
+          "order": 159,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_4_roof_update_type",
+          "label": "Roof Update Type",
+          "type": "select",
+          "order": 160,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_plumbing_update_year",
+          "label": "Plumbing Update Year",
+          "type": "number",
+          "order": 161,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_4_plumbing_update_type",
+          "label": "Plumbing Update Type",
+          "type": "select",
+          "order": 162,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_heating_update_year",
+          "label": "Heating Update Year",
+          "type": "number",
+          "order": 163,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_4_heating_update_type",
+          "label": "Heating Update Type",
+          "type": "select",
+          "order": 164,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_electrical_update_year",
+          "label": "Electrical Update Year",
+          "type": "number",
+          "order": 165,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "placeholder": "YYYY",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false,
+            "min": 1900,
+            "max": 2100
+          }
+        },
+        {
+          "name": "property_4_electrical_update_type",
+          "label": "Electrical Update Type",
+          "type": "select",
+          "order": 166,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_has_home_updates",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "options": [
+            {
+              "label": "Full",
+              "value": "full"
+            },
+            {
+              "label": "Partial",
+              "value": "partial"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "medium"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_security_system",
+          "label": "Does your home have a security system?",
+          "type": "select",
+          "order": 167,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "None",
+              "value": "none"
+            },
+            {
+              "label": "Local Security System (Alarm Sound)",
+              "value": "local_alarm"
+            },
+            {
+              "label": "Central Station Monitoring System",
+              "value": "central_station"
+            },
+            {
+              "label": "Smart Security System (Ring doorbell, or similar)",
+              "value": "smart_system"
+            }
+          ],
+          "placeholder": "\u2014 Select \u2014",
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_home_discounts",
+          "label": "Does your home qualify for discounts?",
+          "help_text": "Check all that apply",
+          "type": "checkbox_group",
+          "order": 168,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "Deadbolts",
+              "value": "deadbolts"
+            },
+            {
+              "label": "Fire Extinguisher",
+              "value": "fire_extinguisher"
+            },
+            {
+              "label": "Smoke Alarm",
+              "value": "smoke_alarm"
+            },
+            {
+              "label": "Monitored Smoke Alarm",
+              "value": "monitored_smoke_alarm"
+            },
+            {
+              "label": "Gated Community",
+              "value": "gated_community"
+            },
+            {
+              "label": "Indoor Sprinklers",
+              "value": "indoor_sprinklers"
+            },
+            {
+              "label": "Electric Backup Generator",
+              "value": "electric_backup_generator"
+            },
+            {
+              "label": "Water Leak Detector",
+              "value": "water_leak_detector"
+            },
+            {
+              "label": "Water Flow Alarm",
+              "value": "water_flow_alarm"
+            },
+            {
+              "label": "Automatic Water Shutoff",
+              "value": "automatic_water_shutoff"
+            },
+            {
+              "label": "Patrolled",
+              "value": "patrolled"
+            },
+            {
+              "label": "Military",
+              "value": "military"
+            },
+            {
+              "label": "Condo: 24 Hr Security",
+              "value": "condo_24hr_security"
+            },
+            {
+              "label": "Condo: Secured Building",
+              "value": "condo_secured_building"
+            }
+          ],
+          "ui": {
+            "option_layout": "grid",
+            "option_label_position": "right",
+            "variant": "card"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_multiple_dwellings",
+          "label": "Are there multiple dwellings on this property?",
+          "type": "radio",
+          "order": 169,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_have_dogs",
+          "label": "Have Dogs?",
+          "type": "radio",
+          "order": 170,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "default_value": "no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_dog_breeds",
+          "label": "Breed(s) of Dog(s)",
+          "type": "text",
+          "order": 171,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "conditional_visibility": {
+            "field": "property_4_have_dogs",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "input_size": "full"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_dog_bite_history",
+          "label": "Any dogs have bite history?",
+          "type": "radio",
+          "order": 172,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "property_4_have_dogs",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_has_pool",
+          "label": "Has Pool?",
+          "type": "radio",
+          "order": 173,
+          "layout": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          },
+          "conditional_visibility": {
+            "field": "property_3_add_another",
+            "operator": "is_checked"
+          }
+        },
+        {
+          "name": "property_4_pool_type",
+          "label": "Pool Type",
+          "type": "radio",
+          "order": 174,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options": [
+            {
+              "label": "In Ground",
+              "value": "in_ground"
+            },
+            {
+              "label": "Above Ground",
+              "value": "above_ground"
+            }
+          ],
+          "conditional_visibility": {
+            "field": "property_4_has_pool",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "property_4_pool_fenced",
+          "label": "Is Pool Fenced?",
+          "type": "radio",
+          "order": 175,
+          "layout": {
+            "desktop": 6,
+            "tablet": 6,
+            "mobile": 12
+          },
+          "options_source": "yes_no",
+          "conditional_visibility": {
+            "field": "property_4_has_pool",
+            "operator": "equals",
+            "value": "yes"
+          },
+          "ui": {
+            "option_layout": "horizontal",
+            "option_label_position": "right",
+            "variant": "standard"
+          },
+          "validation": {
+            "required": false
           }
         }
       ]
@@ -2588,7 +6138,7 @@
       "section_id": "additional_drivers",
       "title": "Additional Drivers",
       "description": "Add information for additional drivers in your household.",
-      "order": 7,
+      "order": 6,
       "conditional_visibility": {
         "field": "insurance_types",
         "operator": "contains_option",
@@ -4583,7 +8133,7 @@
       "section_id": "vehicles",
       "title": "Vehicles",
       "description": "Provide information about your vehicle(s).",
-      "order": 8,
+      "order": 7,
       "conditional_visibility": {
         "field": "insurance_types",
         "operator": "contains_option",
@@ -4626,7 +8176,7 @@
             "input_size": "small"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
@@ -4644,7 +8194,7 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
@@ -4662,7 +8212,7 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
@@ -4758,7 +8308,7 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
@@ -4777,7 +8327,7 @@
             "input_size": "medium"
           },
           "validation": {
-            "required": true
+            "required": false
           }
         },
         {
